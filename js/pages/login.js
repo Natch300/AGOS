@@ -162,7 +162,7 @@ document.getElementById('btn-forgot')?.addEventListener('click', async () => {
   if (!email) { showError(pwError, 'Enter your email first, then click Forgot Password.'); return; }
   setLoading(true);
   const { error } = await supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: window.location.origin + '/agos/reset-password.html'
+      redirectTo: window.location.origin + '/reset-password.html'
   });
   setLoading(false);
   if (error) { showError(pwError, 'Could not send reset email. Please try again.'); }

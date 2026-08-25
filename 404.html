@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AGOS — Page Not Found</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/global.css" />
+  <style>
+    body { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--bg-body, #f5f7fa); }
+    .not-found { text-align: center; padding: var(--space-8); }
+    .not-found i { font-size: 4rem; color: var(--color-primary); margin-bottom: var(--space-4); }
+    .not-found h1 { font-size: var(--font-size-3xl); margin-bottom: var(--space-3); }
+    .not-found p { color: var(--text-muted); margin-bottom: var(--space-6); }
+    .not-found a { color: var(--color-primary); font-weight: 600; text-decoration: none; }
+    .not-found a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="not-found">
+    <i class="fas fa-water"></i>
+    <h1>404</h1>
+    <p>This page doesn't exist or has been moved.</p>
+    <a href="index.html">Go back to AGOS</a>
+  </div>
+  <script>
+    // Redirect unknown paths to home after a short delay for SPA-like feel
+    setTimeout(function() { window.location.href = 'index.html'; }, 3000);
+  </script>
+</body>
+</html>
