@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AGOS Admin — Fund Allocation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+
+<body>
+  <div class="app-shell">
+    <aside id="sidebar" class="sidebar"></aside>
+    <div class="main-content">
+      <header id="top-header" class="top-header"></header>
+      <main class="page-body">
+
+        <!-- System Fund Card -->
+        <div class="card" style="max-width:520px;margin-bottom:var(--space-5)">
+          <h2 style="margin-bottom:var(--space-5)">System Fund Pool</h2>
+          <div style="text-align:center;padding:var(--space-6) 0;margin-bottom:var(--space-5)">
+            <div
+              style="font-size:var(--font-size-xs);font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);margin-bottom:var(--space-2)">
+              Total System Funds</div>
+            <div style="font-size:var(--font-size-4xl);font-weight:800;color:var(--color-primary)"
+              id="sys-fund-display">—</div>
+            <div style="font-size:var(--font-size-xs);color:var(--text-muted);margin-top:var(--space-2)"
+              id="sys-fund-note">Loading...</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="fund-set-amount">Set Total System Funds (PHP)</label>
+            <div style="position:relative">
+              <span
+                style="position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:var(--font-size-lg);font-weight:700;color:var(--text-muted)">₱</span>
+              <input type="number" id="fund-set-amount" class="form-control" placeholder="0.00" min="0" step="0.01"
+                style="padding-left:40px;font-size:var(--font-size-xl);font-weight:700" inputmode="decimal" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="fund-set-notes">Notes</label>
+            <input type="text" id="fund-set-notes" class="form-control"
+              placeholder="e.g. Initial fund injection for Q4 2026" maxlength="200" />
+          </div>
+          <div id="fund-set-error" class="form-error hidden" role="alert"></div>
+          <button class="btn btn-primary btn-full btn-lg" id="btn-set-fund">Update System Fund</button>
+        </div>
+
+        <!-- Allocate to User -->
+        <div class="card" style="max-width:520px;margin-bottom:var(--space-5)">
+          <h2 style="margin-bottom:var(--space-5)">Allocate Funds to User</h2>
+          <div class="form-group">
+            <label class="form-label" for="alloc-search">Find User (by name or account)</label>
+            <input type="search" id="alloc-search" class="form-control" placeholder="Search user…" autocomplete="off" />
+            <div id="alloc-results" style="margin-top:var(--space-2)"></div>
+          </div>
+
+          <div id="alloc-selected" class="hidden"
+            style="background:var(--color-info-bg);border:2px solid #bfdbfe;border-radius:var(--border-radius);padding:var(--space-4);margin-bottom:var(--space-4);display:flex;align-items:center;gap:var(--space-3)">
+            <div id="alloc-avatar"
+              style="width:44px;height:44px;border-radius:50%;background:var(--color-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0">
+            </div>
+            <div style="flex:1">
+              <div id="alloc-name" style="font-weight:700"></div>
+              <div id="alloc-acct" style="font-size:var(--font-size-xs);color:var(--text-muted)"></div>
+              <div id="alloc-balance" style="font-size:var(--font-size-xs);color:var(--color-success);font-weight:700">
+              </div>
+            </div>
+            <button class="btn btn-ghost btn-sm" id="alloc-clear">✕</button>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="alloc-type">Operation</label>
+            <select id="alloc-type" class="form-control">
+              <option value="credit">+ Add Funds (Credit)</option>
+              <option value="debit">− Remove Funds (Debit)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="alloc-amount">Amount (PHP)</label>
+            <div style="position:relative">
+              <span
+                style="position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:var(--font-size-lg);font-weight:700;color:var(--text-muted)">₱</span>
+              <input type="number" id="alloc-amount" class="form-control" placeholder="0.00" min="1" step="0.01"
+                style="padding-left:40px;font-size:var(--font-size-xl);font-weight:700" inputmode="decimal" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="alloc-note">Reason / Notes</label>
+            <input type="text" id="alloc-note" class="form-control" placeholder="e.g. Account correction, initial load…"
+              maxlength="200" />
+          </div>
+          <div id="alloc-error" class="form-error hidden" role="alert"></div>
+          <button class="btn btn-success btn-full btn-lg" id="btn-alloc">Apply Fund Operation</button>
+        </div>
+
+        <!-- Recent admin credit/debit log -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Recent Fund Operations</h2>
+          </div>
+          <div id="fund-ops-log">
+            <div class="spinner"></div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+  <div class="loading-overlay hidden" id="loading-overlay"></div>
+  <style>
+    .user-result-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-3) var(--space-4);
+      cursor: pointer;
+      border-radius: var(--border-radius);
+      transition: background var(--transition-fast);
+    }
+
+    .user-result-item:hover {
+      background: var(--color-gray-100);
+    }
+  </style>
+  <script type="module" src="js/funds.js"></script>
+</body>
+
+</html>

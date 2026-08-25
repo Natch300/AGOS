@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AGOS Admin — Billers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+
+<body>
+  <div class="app-shell">
+    <aside id="sidebar" class="sidebar"></aside>
+    <div class="main-content">
+      <header id="top-header" class="top-header"></header>
+      <main class="page-body">
+
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Biller Management</h2>
+            <button class="btn btn-primary btn-sm" id="btn-add-biller">+ Add Biller</button>
+          </div>
+          <div class="table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Biller</th>
+                  <th>Category</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="billers-tbody">
+                <tr>
+                  <td colspan="4" style="text-align:center;padding:var(--space-8)">
+                    <div class="spinner" style="margin:0 auto"></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Add/Edit Biller Modal -->
+  <div id="biller-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true"
+    aria-labelledby="biller-modal-title">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title" id="biller-modal-title">Add Biller</h3>
+        <button class="modal-close" id="bm-close" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label" for="b-name">Biller Name</label>
+          <input type="text" id="b-name" class="form-control" placeholder="e.g. Meralco" maxlength="100" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="b-category">Category</label>
+          <select id="b-category" class="form-control">
+            <option value="electricity">Electricity</option>
+            <option value="water">Water</option>
+            <option value="internet">Internet</option>
+            <option value="telecom">Telecom</option>
+            <option value="cable">Cable</option>
+            <option value="government">Government</option>
+            <option value="utilities">Utilities</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div id="bm-error" class="form-error hidden" role="alert"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" id="bm-cancel">Cancel</button>
+        <button class="btn btn-primary" id="bm-save">Save Biller</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="loading-overlay hidden" id="loading-overlay"></div>
+  <script type="module" src="js/billers.js"></script>
+</body>
+
+</html>

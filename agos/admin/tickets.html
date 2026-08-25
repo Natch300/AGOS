@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AGOS Admin — Support Tickets</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+
+<body>
+  <div class="app-shell">
+    <aside id="sidebar" class="sidebar"></aside>
+    <div class="main-content">
+      <header id="top-header" class="top-header"></header>
+      <main class="page-body">
+
+        <!-- Filters -->
+        <div class="card">
+          <div style="display:flex;flex-wrap:wrap;gap:var(--space-3);align-items:flex-end">
+            <div class="form-group" style="margin-bottom:0;flex:1;min-width:140px">
+              <label class="form-label" for="f-status">Status</label>
+              <select id="f-status" class="form-control">
+                <option value="">All</option>
+                <option value="open" selected>Open</option>
+                <option value="in_progress">In Progress</option>
+                <option value="resolved">Resolved</option>
+                <option value="closed">Closed</option>
+              </select>
+            </div>
+            <div class="form-group" style="margin-bottom:0;flex:1;min-width:140px">
+              <label class="form-label" for="f-priority">Priority</label>
+              <select id="f-priority" class="form-control">
+                <option value="">All Priorities</option>
+                <option value="urgent">Urgent</option>
+                <option value="high">High</option>
+                <option value="normal">Normal</option>
+                <option value="low">Low</option>
+              </select>
+            </div>
+            <div class="form-group" style="margin-bottom:0;flex:2;min-width:200px">
+              <label class="form-label" for="f-search">Search</label>
+              <input type="search" id="f-search" class="form-control" placeholder="Subject, user name…" />
+            </div>
+            <button class="btn btn-primary" id="btn-filter">Filter</button>
+            <button class="btn btn-ghost" id="btn-reset">Reset</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Support Tickets</h2>
+            <span id="ticket-count" style="font-size:var(--font-size-sm);color:var(--text-muted)"></span>
+          </div>
+          <div id="tickets-body">
+            <div class="spinner"></div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Ticket Reply Modal -->
+  <div id="ticket-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true"
+    aria-labelledby="ticket-modal-title">
+    <div class="modal" style="max-width:640px">
+      <div class="modal-header">
+        <h3 class="modal-title" id="ticket-modal-title">Support Ticket</h3>
+        <button class="modal-close" id="tm-close" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body" id="ticket-modal-body"></div>
+      <div class="modal-footer" id="ticket-modal-footer"></div>
+    </div>
+  </div>
+
+  <div class="loading-overlay hidden" id="loading-overlay"></div>
+  <style>
+    .ticket-row {
+      display: grid;
+      grid-template-columns: 1fr auto auto auto;
+      align-items: start;
+      gap: var(--space-4);
+      padding: var(--space-4) var(--space-5);
+      border-bottom: 1px solid var(--border-color);
+      cursor: pointer;
+      transition: background var(--transition-fast);
+    }
+
+    .ticket-row:hover {
+      background: var(--color-gray-50);
+    }
+
+    .ticket-row:last-child {
+      border-bottom: none;
+    }
+
+    .t-subject {
+      font-weight: 700;
+      font-size: var(--font-size-sm);
+      margin-bottom: 4px;
+    }
+
+    .t-meta {
+      font-size: var(--font-size-xs);
+      color: var(--text-muted);
+    }
+
+    .priority-urgent {
+      color: var(--color-danger);
+    }
+
+    .priority-high {
+      color: var(--color-warning);
+    }
+
+    .priority-normal {
+      color: var(--color-info);
+    }
+
+    .priority-low {
+      color: var(--color-gray-500);
+    }
+  </style>
+  <script type="module" src="js/tickets.js"></script>
+</body>
+
+</html>

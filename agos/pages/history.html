@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AGOS — Transaction History</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/global.css" />
+</head>
+<body>
+<div class="app-shell">
+  <aside id="sidebar" class="sidebar"></aside>
+  <div class="main-content">
+    <header id="top-header" class="top-header"></header>
+    <main class="page-body">
+
+      <!-- Filters -->
+      <div class="card" style="margin-bottom:var(--space-5)">
+        <div style="display:flex;flex-wrap:wrap;gap:var(--space-3);align-items:flex-end">
+          <div class="form-group" style="margin-bottom:0;flex:1;min-width:160px">
+            <label class="form-label" for="filter-type">Type</label>
+            <select id="filter-type" class="form-control">
+              <option value="">All Types</option>
+              <option value="transfer">Transfers Sent</option>
+              <option value="receive">Transfers Received</option>
+              <option value="bill_payment">Bill Payments</option>
+              <option value="admin_credit">Admin Credits</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom:0;min-width:140px">
+            <label class="form-label" for="filter-from">From Date</label>
+            <input type="date" id="filter-from" class="form-control" />
+          </div>
+          <div class="form-group" style="margin-bottom:0;min-width:140px">
+            <label class="form-label" for="filter-to">To Date</label>
+            <input type="date" id="filter-to" class="form-control" />
+          </div>
+          <div class="form-group" style="margin-bottom:0;flex:1;min-width:160px">
+            <label class="form-label" for="filter-search">Search</label>
+            <input type="search" id="filter-search" class="form-control" placeholder="Name, ref, amount..." />
+          </div>
+          <button class="btn btn-primary" id="btn-filter" style="min-width:100px">Filter</button>
+          <button class="btn btn-ghost" id="btn-reset">Reset</button>
+        </div>
+      </div>
+
+      <!-- Transaction list -->
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Transactions <span id="txn-count" style="font-weight:400;color:var(--text-muted);font-size:var(--font-size-sm)"></span></h2>
+          <div style="display:flex;gap:var(--space-2)">
+            <select id="sort-order" class="form-control" style="min-height:auto;padding:var(--space-2) var(--space-3);font-size:var(--font-size-xs)">
+              <option value="desc">Newest First</option>
+              <option value="asc">Oldest First</option>
+            </select>
+          </div>
+        </div>
+        <div id="txn-list">
+          <div class="spinner"></div>
+        </div>
+        <div id="load-more-wrap" class="hidden" style="padding:var(--space-4);text-align:center">
+          <button class="btn btn-ghost" id="btn-load-more">Load More Transactions</button>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- Receipt Modal -->
+<div id="receipt-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="receipt-modal-title">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 class="modal-title" id="receipt-modal-title">Transaction Details</h3>
+      <button class="modal-close" id="receipt-close" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body" id="receipt-body"></div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" id="receipt-close2">Close</button>
+      <button class="btn btn-primary" id="btn-download-receipt"><i class="fas fa-download" aria-hidden="true"></i> Download Receipt</button>
+    </div>
+  </div>
+</div>
+
+<nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation"></nav>
+<div class="loading-overlay hidden" id="loading-overlay"></div>
+<script type="module" src="../js/pages/history.js"></script>
+</body>
+</html>

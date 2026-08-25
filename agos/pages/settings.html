@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AGOS — Accessibility Settings</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/global.css" />
+</head>
+<body>
+<div class="app-shell">
+  <aside id="sidebar" class="sidebar"></aside>
+  <div class="main-content">
+    <header id="top-header" class="top-header"></header>
+    <main class="page-body">
+      <div style="max-width:640px">
+
+        <!-- Display Settings -->
+        <div class="card" style="margin-bottom:var(--space-5)">
+          <h2 style="margin-bottom:var(--space-5)">Display Settings</h2>
+
+          <!-- Theme -->
+          <div class="settings-row">
+            <div class="settings-info">
+              <div class="settings-label">Color Theme</div>
+              <div class="settings-desc">Choose between standard or high-contrast mode for better visibility.</div>
+            </div>
+            <div class="settings-control">
+              <div class="theme-options" role="group" aria-label="Color theme">
+                <button class="theme-btn active" id="theme-standard" data-theme="standard" aria-pressed="true">
+                  <span class="theme-preview standard-preview"></span>
+                  <span>Standard</span>
+                </button>
+                <button class="theme-btn" id="theme-high-contrast" data-theme="high-contrast" aria-pressed="false">
+                  <span class="theme-preview hc-preview"></span>
+                  <span>High Contrast</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <hr class="divider" />
+
+          <!-- Text Size -->
+          <div class="settings-row">
+            <div class="settings-info">
+              <div class="settings-label">Text Size</div>
+              <div class="settings-desc">Increase or decrease the text size throughout the app.</div>
+            </div>
+            <div class="settings-control">
+              <div class="text-size-control">
+                <button class="btn btn-ghost btn-icon" id="text-decrease" aria-label="Decrease text size">A−</button>
+                <span class="text-size-display" id="text-size-display" aria-live="polite">100%</span>
+                <button class="btn btn-ghost btn-icon" id="text-increase" aria-label="Increase text size">A+</button>
+              </div>
+              <button class="btn btn-ghost btn-sm" id="text-reset" style="margin-top:var(--space-2)">Reset</button>
+            </div>
+          </div>
+
+          <hr class="divider" />
+
+          <!-- Language -->
+          <div class="settings-row">
+            <div class="settings-info">
+              <div class="settings-label">Language / Wika</div>
+              <div class="settings-desc">Choose your preferred language for the app interface.</div>
+            </div>
+            <div class="settings-control">
+              <div class="lang-options" role="group" aria-label="Language selection">
+                <button class="lang-btn active" data-lang="en" aria-pressed="true">
+                  English
+                </button>
+                <button class="lang-btn" data-lang="fil" aria-pressed="false">
+                  Filipino
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Profile Settings -->
+        <div class="card" style="margin-bottom:var(--space-5)">
+          <h2 style="margin-bottom:var(--space-5)">Profile Settings</h2>
+          <div class="form-group">
+            <label class="form-label" for="profile-name">Full Name</label>
+            <input type="text" id="profile-name" class="form-control" placeholder="Your full name" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="profile-phone">Phone Number</label>
+            <input type="tel" id="profile-phone" class="form-control" placeholder="+63 9XX XXX XXXX" />
+          </div>
+          <div id="profile-success" class="alert alert-success hidden" role="status"></div>
+          <div id="profile-error" class="form-error hidden" role="alert"></div>
+          <button class="btn btn-primary" id="btn-save-profile">Save Changes</button>
+        </div>
+
+        <!-- Change PIN -->
+        <div class="card" style="margin-bottom:var(--space-5)">
+          <h2 style="margin-bottom:var(--space-5)">Change PIN</h2>
+          <div class="form-group">
+            <label class="form-label" for="new-pin">New 6-Digit PIN</label>
+            <input type="password" id="new-pin" class="form-control" placeholder="••••••"
+                   maxlength="6" inputmode="numeric" pattern="[0-9]{6}" autocomplete="new-password" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="confirm-pin">Confirm New PIN</label>
+            <input type="password" id="confirm-pin" class="form-control" placeholder="••••••"
+                   maxlength="6" inputmode="numeric" pattern="[0-9]{6}" autocomplete="new-password" />
+          </div>
+          <div id="pin-error" class="form-error hidden" role="alert"></div>
+          <div id="pin-success" class="alert alert-success hidden" role="status"></div>
+          <button class="btn btn-primary" id="btn-change-pin">Update PIN</button>
+        </div>
+
+        <!-- Trusted Family Access -->
+        <div class="card" style="margin-bottom:var(--space-5)">
+          <div class="card-header">
+            <h2 class="card-title">Trusted Family Access</h2>
+            <button class="btn btn-primary btn-sm" id="btn-add-trusted">+ Add</button>
+          </div>
+          <p style="font-size:var(--font-size-sm);color:var(--text-muted);padding:0 0 var(--space-4)">
+            Allow trusted family members to view your balance and transaction history — they cannot move money.
+          </p>
+          <div id="trusted-list">
+            <div class="spinner" style="width:24px;height:24px;border-width:3px;margin:var(--space-4) auto"></div>
+          </div>
+        </div>
+
+        <!-- Danger zone -->
+        <div class="card" style="border:2px solid var(--color-danger-bg)">
+          <h2 style="margin-bottom:var(--space-3);color:var(--color-danger)">Account</h2>
+          <p style="font-size:var(--font-size-sm);color:var(--text-muted);margin-bottom:var(--space-4)">
+            Sign out of your account on this device.
+          </p>
+          <button class="btn btn-danger" id="btn-logout-settings">Sign Out</button>
+        </div>
+
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- Add trusted contact modal -->
+<div id="trusted-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="trusted-modal-title">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 class="modal-title" id="trusted-modal-title">Add Trusted Family Member</h3>
+      <button class="modal-close" id="trusted-modal-close" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label" for="trusted-acct">Their Account Number</label>
+        <input type="text" id="trusted-acct" class="form-control" placeholder="AGS0012345" style="text-transform:uppercase" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="trusted-label">Label (e.g. Son, Daughter)</label>
+        <input type="text" id="trusted-label" class="form-control" placeholder="Family Member" />
+      </div>
+      <div id="trusted-error" class="form-error hidden" role="alert"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" id="trusted-cancel">Cancel</button>
+      <button class="btn btn-primary" id="trusted-save">Add</button>
+    </div>
+  </div>
+</div>
+
+<style>
+.settings-row { display:flex;align-items:flex-start;justify-content:space-between;gap:var(--space-6);flex-wrap:wrap;padding:var(--space-4) 0; }
+.settings-info { flex:1;min-width:200px; }
+.settings-label { font-weight:700;font-size:var(--font-size-sm);margin-bottom:4px; }
+.settings-desc { font-size:var(--font-size-sm);color:var(--text-muted);line-height:1.5; }
+.settings-control { display:flex;flex-direction:column;align-items:flex-end;gap:var(--space-2);flex-shrink:0; }
+.theme-options,.lang-options { display:flex;gap:var(--space-2); }
+.theme-btn,.lang-btn { padding:var(--space-2) var(--space-4);border:2px solid var(--border-color);background:var(--bg-card);border-radius:var(--border-radius);font-family:var(--font-family);font-size:var(--font-size-sm);font-weight:600;cursor:pointer;display:flex;align-items:center;gap:var(--space-2);transition:all var(--transition-fast); }
+.theme-btn.active,.theme-btn:hover,.lang-btn.active,.lang-btn:hover { border-color:var(--color-primary);background:var(--color-info-bg);color:var(--color-primary); }
+.theme-preview { width:24px;height:24px;border-radius:50%;border:2px solid var(--border-color); }
+.standard-preview { background:linear-gradient(135deg,#1a56a0 50%,#00b4d8 50%); }
+.hc-preview { background:linear-gradient(135deg,#000 50%,#fff 50%); }
+.text-size-control { display:flex;align-items:center;gap:var(--space-3); }
+.text-size-display { font-size:var(--font-size-md);font-weight:700;min-width:52px;text-align:center; }
+.trusted-item { display:flex;align-items:center;gap:var(--space-4);padding:var(--space-3) 0;border-bottom:1px solid var(--border-color); }
+.trusted-item:last-child { border-bottom:none; }
+</style>
+<nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation"></nav>
+<script type="module" src="../js/pages/settings.js"></script>
+</body>
+</html>

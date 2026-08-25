@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AGOS Admin — Transactions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+
+<body>
+  <div class="app-shell">
+    <aside id="sidebar" class="sidebar"></aside>
+    <div class="main-content">
+      <header id="top-header" class="top-header"></header>
+      <main class="page-body">
+
+        <!-- Filters -->
+        <div class="card">
+          <div style="display:flex;flex-wrap:wrap;gap:var(--space-3);align-items:flex-end">
+            <div class="form-group" style="margin-bottom:0;flex:1;min-width:160px">
+              <label class="form-label" for="f-type">Type</label>
+              <select id="f-type" class="form-control">
+                <option value="">All Types</option>
+                <option value="transfer">Transfer</option>
+                <option value="bill_payment">Bill Payment</option>
+                <option value="admin_credit">Admin Credit</option>
+                <option value="admin_debit">Admin Debit</option>
+              </select>
+            </div>
+            <div class="form-group" style="margin-bottom:0;flex:1;min-width:160px">
+              <label class="form-label" for="f-status">Status</label>
+              <select id="f-status" class="form-control">
+                <option value="">All Statuses</option>
+                <option value="completed">Completed</option>
+                <option value="flagged">Flagged</option>
+                <option value="pending">Pending</option>
+                <option value="failed">Failed</option>
+              </select>
+            </div>
+            <div class="form-group" style="margin-bottom:0;min-width:140px">
+              <label class="form-label" for="f-from">From</label>
+              <input type="date" id="f-from" class="form-control" />
+            </div>
+            <div class="form-group" style="margin-bottom:0;min-width:140px">
+              <label class="form-label" for="f-to">To</label>
+              <input type="date" id="f-to" class="form-control" />
+            </div>
+            <div class="form-group" style="margin-bottom:0;flex:1;min-width:180px">
+              <label class="form-label" for="f-search">Search</label>
+              <input type="search" id="f-search" class="form-control" placeholder="Name, ref, account…" />
+            </div>
+            <button class="btn btn-primary" id="btn-filter">Filter</button>
+            <button class="btn btn-ghost" id="btn-reset">Reset</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Transactions <span id="txn-total"
+                style="font-weight:400;font-size:var(--font-size-sm);color:var(--text-muted)"></span></h2>
+          </div>
+          <div class="table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Reference</th>
+                  <th>Type</th>
+                  <th>From</th>
+                  <th>To</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="txns-tbody">
+                <tr>
+                  <td colspan="8" style="text-align:center;padding:var(--space-8)">
+                    <div class="spinner" style="margin:0 auto"></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div id="txn-load-more" class="hidden" style="text-align:center;padding:var(--space-4)">
+            <button class="btn btn-ghost" id="btn-more">Load More</button>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+  <div class="loading-overlay hidden" id="loading-overlay"></div>
+  <script type="module" src="js/transactions.js"></script>
+</body>
+
+</html>

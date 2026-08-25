@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AGOS — Sign In</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/login.css" />
+</head>
+<body class="login-body">
+
+  <div class="login-wrapper">
+    <!-- Left panel: branding -->
+    <div class="login-brand" aria-hidden="true">
+      <div class="brand-content">
+        <div class="brand-logo">
+          <i class="fas fa-water"></i>
+        </div>
+        <h1 class="brand-name">AGOS</h1>
+        <p class="brand-tagline">Your money flows with you.</p>
+        <ul class="brand-features">
+          <li><i class="fas fa-check-circle"></i> Safe &amp; Secure Transfers</li>
+          <li><i class="fas fa-check-circle"></i> Pay Bills in Seconds</li>
+          <li><i class="fas fa-check-circle"></i> Track Every Peso</li>
+          <li><i class="fas fa-check-circle"></i> Always Here to Help</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Right panel -->
+    <main class="login-form-panel" id="login-main">
+      <div class="login-form-inner">
+
+        <!-- Mobile logo -->
+        <div class="login-mobile-logo" aria-hidden="true">
+          <span class="brand-logo-sm"><i class="fas fa-water"></i></span>
+          <span class="brand-name-sm">AGOS</span>
+        </div>
+
+        <!-- Tabs: PIN / Password -->
+        <div class="login-tabs" role="tablist" aria-label="Sign in method">
+          <button class="login-tab active" id="tab-pin"      role="tab" aria-selected="true"  aria-controls="panel-pin"><i class="fas fa-lock"></i> PIN</button>
+          <button class="login-tab"        id="tab-password" role="tab" aria-selected="false" aria-controls="panel-password"><i class="fas fa-key"></i> Password</button>
+        </div>
+
+        <!-- ===== PIN PANEL ===== -->
+        <div id="panel-pin" role="tabpanel" aria-labelledby="tab-pin">
+          <div class="form-group">
+            <label class="form-label" for="pin-email">Email Address</label>
+            <input type="email" id="pin-email" class="form-control" placeholder="yourname@email.com"
+                   autocomplete="email" inputmode="email" />
+          </div>
+
+          <div class="pin-display-wrap">
+            <p class="form-label" id="pin-display-label">Enter your 6-digit PIN</p>
+            <div class="pin-dots" role="group" aria-labelledby="pin-display-label" aria-describedby="pin-hint">
+              <span class="pin-dot"></span>
+              <span class="pin-dot"></span>
+              <span class="pin-dot"></span>
+              <span class="pin-dot"></span>
+              <span class="pin-dot"></span>
+              <span class="pin-dot"></span>
+            </div>
+            <p class="pin-hint" id="pin-hint">Use the keypad below to enter your PIN</p>
+          </div>
+
+          <div class="pin-keypad" role="group" aria-label="PIN keypad">
+            <button type="button" class="pin-key" data-val="1" aria-label="1">1</button>
+            <button type="button" class="pin-key" data-val="2" aria-label="2">2<span>ABC</span></button>
+            <button type="button" class="pin-key" data-val="3" aria-label="3">3<span>DEF</span></button>
+            <button type="button" class="pin-key" data-val="4" aria-label="4">4<span>GHI</span></button>
+            <button type="button" class="pin-key" data-val="5" aria-label="5">5<span>JKL</span></button>
+            <button type="button" class="pin-key" data-val="6" aria-label="6">6<span>MNO</span></button>
+            <button type="button" class="pin-key" data-val="7" aria-label="7">7<span>PQRS</span></button>
+            <button type="button" class="pin-key" data-val="8" aria-label="8">8<span>TUV</span></button>
+            <button type="button" class="pin-key" data-val="9" aria-label="9">9<span>WXYZ</span></button>
+            <button type="button" class="pin-key pin-key-empty" aria-hidden="true" disabled></button>
+            <button type="button" class="pin-key" data-val="0" aria-label="0">0</button>
+            <button type="button" class="pin-key pin-key-del" id="pin-del" aria-label="Delete last digit"><i class="fas fa-backspace"></i></button>
+          </div>
+
+          <div id="pin-error" class="form-error" style="display:none" role="alert"></div>
+
+          <button type="button" class="btn btn-primary btn-full btn-lg" id="btn-pin-login" style="margin-top:var(--space-5)">
+            Sign In with PIN
+          </button>
+        </div>
+
+        <!-- ===== PASSWORD PANEL ===== -->
+        <div id="panel-password" role="tabpanel" aria-labelledby="tab-password" style="display:none">
+          <div class="form-group">
+            <label class="form-label" for="pw-email">Email Address</label>
+            <input type="email" id="pw-email" class="form-control" placeholder="yourname@email.com" autocomplete="email" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="pw-password">Password</label>
+            <div class="input-pw-wrap">
+              <input type="password" id="pw-password" class="form-control" placeholder="Your password" autocomplete="current-password" />
+              <button type="button" class="pw-toggle" id="pw-toggle" aria-label="Show/hide password"><i class="fas fa-eye"></i></button>
+            </div>
+          </div>
+          <div id="pw-error" class="form-error" style="display:none" role="alert"></div>
+          <button type="button" class="btn btn-primary btn-full btn-lg" id="btn-pw-login">Sign In</button>
+          <button type="button" class="btn btn-ghost btn-full" id="btn-forgot" style="margin-top:var(--space-3)">Forgot Password?</button>
+        </div>
+
+        <!-- Register link -->
+        <p class="login-register-link" id="register-link-p">
+          Don't have an account?
+          <button type="button" class="link-btn" id="btn-show-register">Create one</button>
+        </p>
+
+        <!-- ===== REGISTER PANEL ===== -->
+        <div id="register-panel" style="display:none" role="region" aria-label="Create account">
+          <hr class="divider" />
+          <h2 class="register-title">Create Account</h2>
+          <div class="form-group">
+            <label class="form-label" for="reg-name">Full Name</label>
+            <input type="text" id="reg-name" class="form-control" placeholder="Juan dela Cruz" autocomplete="name" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="reg-email">Email Address</label>
+            <input type="email" id="reg-email" class="form-control" placeholder="yourname@email.com" autocomplete="email" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="reg-phone">Phone Number</label>
+            <input type="tel" id="reg-phone" class="form-control" placeholder="+63 9XX XXX XXXX" autocomplete="tel" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="reg-password">Password</label>
+            <input type="password" id="reg-password" class="form-control" placeholder="At least 8 characters" autocomplete="new-password" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="reg-pin">6-Digit PIN</label>
+            <input type="password" id="reg-pin" class="form-control" placeholder="••••••"
+                   maxlength="6" inputmode="numeric" pattern="[0-9]{6}" autocomplete="off" />
+            <p class="form-hint">You'll use this PIN to log in quickly</p>
+          </div>
+          <div id="reg-error" class="form-error" style="display:none" role="alert"></div>
+          <div id="reg-success" class="alert alert-success" style="display:none" role="status"></div>
+          <button type="button" class="btn btn-success btn-full btn-lg" id="btn-register">Create My Account</button>
+          <button type="button" class="btn btn-ghost btn-full" id="btn-hide-register" style="margin-top:var(--space-2)">← Back to Sign In</button>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Loading overlay -->
+  <div id="loading-overlay" style="display:none;position:fixed;inset:0;background:rgba(255,255,255,.85);z-index:9999;display:none;align-items:center;justify-content:center">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- ============================================================
+       Supabase loaded as a plain script (NOT a module import)
+       so a CDN failure won't silently kill all other JS
+       ============================================================ -->
+  <!-- Pinned to v2.112.3 — supports new sb_publishable_... keys -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.112.3/dist/umd/supabase.min.js"></script>
+
+  <script>
+  const SUPABASE_URL      = 'https://fjmbzvfoxntmolxdfdzy.supabase.co';
+  const SUPABASE_ANON_KEY = 'sb_publishable_U01UUqfNsehy9rxnjI2Q6Q_lbOBEQuB';
+
+  // ============================================================
+  // Init Supabase (only if library loaded correctly)
+  // ============================================================
+  let sb = null;
+  try {
+    sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+      auth: { persistSession: true, autoRefreshToken: true, storageKey: 'agos-session' }
+    });
+  } catch (e) {
+    console.warn('Supabase init failed:', e.message);
+  }
+
+  // Redirect if already logged in
+  if (sb) {
+    sb.auth.getSession().then(({ data }) => {
+      if (data.session) redirectAfterLogin(data.session.user.id);
+    });
+  }
+
+  // Apply saved accessibility prefs
+  try {
+    const prefs = JSON.parse(localStorage.getItem('agos-prefs') || '{}');
+    if (prefs.theme === 'high-contrast') document.documentElement.setAttribute('data-theme','high-contrast');
+    if (prefs.textScale) document.documentElement.style.setProperty('--text-scale', prefs.textScale);
+  } catch(e) {}
+
+  // ============================================================
+  // STATE
+  // ============================================================
+  let pinValue = '';
+  const PIN_LENGTH = 6;
+
+  // ============================================================
+  // HELPERS
+  // ============================================================
+  function showErr(id, msg) {
+    const el = document.getElementById(id);
+    el.textContent = msg;
+    el.style.display = 'block';
+    el.style.color = '';
+  }
+  function showSuccess(id, msg) {
+    const el = document.getElementById(id);
+    el.textContent = msg;
+    el.style.display = 'block';
+  }
+  function hideErr(id) {
+    const el = document.getElementById(id);
+    el.textContent = '';
+    el.style.display = 'none';
+  }
+  function setLoading(show) {
+    const el = document.getElementById('loading-overlay');
+    el.style.display = show ? 'flex' : 'none';
+  }
+
+  // ============================================================
+  // TAB SWITCHING
+  // ============================================================
+  document.getElementById('tab-pin').addEventListener('click', function() {
+    this.classList.add('active');       this.setAttribute('aria-selected','true');
+    document.getElementById('tab-password').classList.remove('active');
+    document.getElementById('tab-password').setAttribute('aria-selected','false');
+    document.getElementById('panel-pin').style.display      = 'block';
+    document.getElementById('panel-password').style.display = 'none';
+  });
+
+  document.getElementById('tab-password').addEventListener('click', function() {
+    this.classList.add('active');       this.setAttribute('aria-selected','true');
+    document.getElementById('tab-pin').classList.remove('active');
+    document.getElementById('tab-pin').setAttribute('aria-selected','false');
+    document.getElementById('panel-password').style.display = 'block';
+    document.getElementById('panel-pin').style.display      = 'none';
+  });
+
+  // ============================================================
+  // PIN KEYPAD
+  // ============================================================
+  function updatePinDots() {
+    document.querySelectorAll('.pin-dot').forEach(function(dot, i) {
+      dot.classList.toggle('filled', i < pinValue.length);
+      dot.classList.remove('error');
+    });
+  }
+
+  function shakePinDots() {
+    document.querySelectorAll('.pin-dot').forEach(function(d) {
+      d.classList.add('error');
+      d.classList.remove('filled');
+    });
+    pinValue = '';
+    setTimeout(function() {
+      document.querySelectorAll('.pin-dot').forEach(function(d) { d.classList.remove('error'); });
+    }, 600);
+  }
+
+  // Number buttons
+  document.querySelectorAll('.pin-key[data-val]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      if (pinValue.length < PIN_LENGTH) {
+        pinValue += btn.getAttribute('data-val');
+        updatePinDots();
+        hideErr('pin-error');
+      }
+    });
+  });
+
+  // Backspace button
+  document.getElementById('pin-del').addEventListener('click', function() {
+    pinValue = pinValue.slice(0, -1);
+    updatePinDots();
+    hideErr('pin-error');
+  });
+
+  // Keyboard support — only when PIN panel is visible AND focus is inside it
+  document.addEventListener('keydown', function(e) {
+    if (document.getElementById('panel-pin').style.display !== 'none') {
+      // Check if focus is inside PIN panel (not in email field)
+      const panelPin = document.getElementById('panel-pin');
+      const activeEl = document.activeElement;
+      
+      // Only respond to keydown if the active element is inside the PIN panel
+      // OR if it's not an input field at all (e.g., the page itself)
+      const focusInPinPanel = panelPin.contains(activeEl) && activeEl.tagName !== 'INPUT';
+      const noInputFocus = activeEl.tagName !== 'INPUT';
+      
+      if (focusInPinPanel || noInputFocus) {
+        if (/^[0-9]$/.test(e.key) && pinValue.length < PIN_LENGTH) {
+          pinValue += e.key;
+          updatePinDots();
+          e.preventDefault();
+        } else if (e.key === 'Backspace') {
+          pinValue = pinValue.slice(0, -1);
+          updatePinDots();
+          e.preventDefault();
+        } else if (e.key === 'Enter') {
+          document.getElementById('btn-pin-login').click();
+          e.preventDefault();
+        }
+      }
+    }
+  });
+
+  // ============================================================
+  // PIN LOGIN
+  // ============================================================
+  document.getElementById('btn-pin-login').addEventListener('click', async function() {
+    const email = document.getElementById('pin-email').value.trim();
+    hideErr('pin-error');
+
+    if (!email)                         { showErr('pin-error', 'Please enter your email address.'); return; }
+    if (pinValue.length < PIN_LENGTH)   { showErr('pin-error', 'Please enter your complete 6-digit PIN.'); return; }
+    if (!sb)                            { showErr('pin-error', 'Connection error. Check your internet and reload.'); return; }
+
+    setLoading(true);
+    try {
+      const { data, error } = await sb.auth.signInWithPassword({
+        email:    email,
+        password: 'AGOS_PIN_' + pinValue,
+      });
+      if (error) { shakePinDots(); showErr('pin-error', 'Incorrect PIN or email. Please try again.'); return; }
+      await redirectAfterLogin(data.user.id);
+    } catch(e) {
+      showErr('pin-error', 'Something went wrong. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  });
+
+  // ============================================================
+  // PASSWORD LOGIN
+  // ============================================================
+  document.getElementById('btn-pw-login').addEventListener('click', async function() {
+    const email = document.getElementById('pw-email').value.trim();
+    const pw    = document.getElementById('pw-password').value;
+    hideErr('pw-error');
+
+    if (!email) { showErr('pw-error', 'Please enter your email address.'); return; }
+    if (!pw)    { showErr('pw-error', 'Please enter your password.'); return; }
+    if (!sb)    { showErr('pw-error', 'Connection error. Check your internet and reload.'); return; }
+
+    setLoading(true);
+    try {
+      const { data, error } = await sb.auth.signInWithPassword({ email: email, password: pw });
+      if (error) { showErr('pw-error', 'Incorrect email or password.'); return; }
+      await redirectAfterLogin(data.user.id);
+    } catch(e) {
+      showErr('pw-error', 'Something went wrong. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  });
+
+  // Show / hide password
+  document.getElementById('pw-toggle').addEventListener('click', function() {
+    const input = document.getElementById('pw-password');
+    const icon = this.querySelector('i');
+    if (input.type === 'password') {
+      input.type = 'text';
+      icon.classList.remove('fa-eye');
+      icon.classList.add('fa-eye-slash');
+    } else {
+      input.type = 'password';
+      icon.classList.remove('fa-eye-slash');
+      icon.classList.add('fa-eye');
+    }
+  });
+
+  // Forgot password
+  document.getElementById('btn-forgot').addEventListener('click', async function() {
+    const email = document.getElementById('pw-email').value.trim();
+    if (!email) { showErr('pw-error', 'Enter your email first, then click Forgot Password.'); return; }
+    if (!sb)    { showErr('pw-error', 'Connection error.'); return; }
+    setLoading(true);
+    const { error } = await sb.auth.resetPasswordForEmail(email, {
+      redirectTo: window.location.origin + '/agos/reset-password.html'
+    });
+    setLoading(false);
+    if (error) { showErr('pw-error', 'Could not send reset email. Please try again.'); }
+    else {
+      const el = document.getElementById('pw-error');
+      el.textContent = '✓ Reset email sent! Check your inbox.';
+      el.style.color = 'var(--color-success)';
+      el.style.display = 'block';
+    }
+  });
+
+  // ============================================================
+  // SHOW / HIDE REGISTER
+  // ============================================================
+  document.getElementById('btn-show-register').addEventListener('click', function() {
+    document.getElementById('register-panel').style.display  = 'block';
+    document.getElementById('register-link-p').style.display = 'none';
+    // Scroll the register form into view on mobile
+    document.getElementById('register-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  document.getElementById('btn-hide-register').addEventListener('click', function() {
+    document.getElementById('register-panel').style.display  = 'none';
+    document.getElementById('register-link-p').style.display = 'block';
+    hideErr('reg-error');
+    document.getElementById('reg-success').style.display = 'none';
+  });
+
+  // ============================================================
+  // REGISTER
+  // ============================================================
+  document.getElementById('btn-register').addEventListener('click', async function() {
+    const name     = document.getElementById('reg-name').value.trim();
+    const email    = document.getElementById('reg-email').value.trim();
+    const phone    = document.getElementById('reg-phone').value.trim();
+    const password = document.getElementById('reg-password').value;
+    const pin      = document.getElementById('reg-pin').value.trim();
+
+    hideErr('reg-error');
+    document.getElementById('reg-success').style.display = 'none';
+
+    if (!name)                            { showErr('reg-error', 'Please enter your full name.'); return; }
+    if (!email)                           { showErr('reg-error', 'Please enter your email address.'); return; }
+    if (!password || password.length < 8) { showErr('reg-error', 'Password must be at least 8 characters.'); return; }
+    if (!/^\d{6}$/.test(pin))             { showErr('reg-error', 'PIN must be exactly 6 digits (numbers only).'); return; }
+    if (!sb)                              { showErr('reg-error', 'Connection error. Check your internet and reload.'); return; }
+
+    const btn = this;
+    btn.disabled = true;
+    btn.textContent = 'Creating account…';
+    setLoading(true);
+
+    try {
+      // Step 1: Sign up with Supabase Auth using PIN as the password
+      // (PIN login works by using 'AGOS_PIN_' + pin as the password)
+      const { data, error } = await sb.auth.signUp({
+        email:    email,
+        password: 'AGOS_PIN_' + pin,
+        options:  { data: { full_name: name, phone: phone || null } }
+      });
+
+      if (error) {
+        showErr('reg-error', error.message);
+        return;
+      }
+
+      // Step 2: Update the profile row (auto-created by the DB trigger)
+      if (data.user) {
+        await sb.from('profiles').upsert({
+          id:        data.user.id,
+          full_name: name,
+          phone:     phone || null,
+          pin_hash:  'set',
+        }, { onConflict: 'id' });
+      }
+
+      // Success
+      document.getElementById('reg-success').textContent =
+        '✓ Account created! Check your email to confirm, then sign in with your PIN.';
+      document.getElementById('reg-success').style.display = 'block';
+
+      // Clear the form
+      ['reg-name','reg-email','reg-phone','reg-password','reg-pin'].forEach(function(id) {
+        document.getElementById(id).value = '';
+      });
+
+    } catch(e) {
+      showErr('reg-error', 'Registration failed: ' + e.message);
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Create My Account';
+      setLoading(false);
+    }
+  });
+
+  // ============================================================
+  // REDIRECT AFTER LOGIN
+  // ============================================================
+  async function redirectAfterLogin(userId) {
+    if (!sb) return;
+    try {
+      const { data: profile } = await sb
+        .from('profiles')
+        .select('is_admin, is_active')
+        .eq('id', userId)
+        .single();
+
+      if (profile && !profile.is_active) {
+        await sb.auth.signOut();
+        showErr('pin-error', 'Your account is deactivated. Contact support.');
+        showErr('pw-error',  'Your account is deactivated. Contact support.');
+        return;
+      }
+
+      const stored = sessionStorage.getItem('agos-redirect-after-login');
+      if (stored) {
+        sessionStorage.removeItem('agos-redirect-after-login');
+        window.location.href = stored;
+        return;
+      }
+
+      window.location.href = 'pages/dashboard.html';
+    } catch(e) {
+      window.location.href = 'pages/dashboard.html';
+    }
+  }
+  </script>
+</body>
+</html>

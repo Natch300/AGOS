@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AGOS — Receive Money</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/global.css" />
+</head>
+<body>
+<div class="app-shell">
+  <aside id="sidebar" class="sidebar"></aside>
+  <div class="main-content">
+    <header id="top-header" class="top-header"></header>
+    <main class="page-body">
+      <div style="max-width:560px">
+
+        <!-- Your account card -->
+        <div class="card" style="margin-bottom:var(--space-5)">
+          <h2 style="margin-bottom:var(--space-5)">Your Account Details</h2>
+          <p style="font-size:var(--font-size-sm);color:var(--text-muted);margin-bottom:var(--space-5)">
+            Share your account number with the sender so they can send money to you.
+          </p>
+
+          <div class="receive-card" id="receive-card" aria-label="Your account information">
+            <div class="receive-avatar" id="recv-avatar"></div>
+            <div class="receive-name" id="recv-name">Loading...</div>
+            <div class="receive-acct-label">Account Number</div>
+            <div class="receive-acct" id="recv-acct">—</div>
+            <button class="btn btn-secondary" id="btn-copy" aria-label="Copy account number">
+              <i class="fas fa-copy" aria-hidden="true"></i> Copy Account Number
+            </button>
+          </div>
+        </div>
+
+        <!-- Step-by-step guide -->
+        <div class="card" style="margin-bottom:var(--space-5)">
+          <h2 style="margin-bottom:var(--space-4)">How to Receive Money</h2>
+          <ol class="receive-steps">
+            <li>
+              <span class="step-num">1</span>
+              <div>
+                <strong>Share your account number</strong>
+                <p>Give your account number to the person sending you money.</p>
+              </div>
+            </li>
+            <li>
+              <span class="step-num">2</span>
+              <div>
+                <strong>They send through AGOS</strong>
+                <p>The sender logs in and uses "Send Money" to transfer funds.</p>
+              </div>
+            </li>
+            <li>
+              <span class="step-num">3</span>
+              <div>
+                <strong>You get notified instantly</strong>
+                <p>You'll receive a notification and the money appears in your balance right away.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+        <!-- Recent incoming transactions -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Recent Received</h2>
+          </div>
+          <div id="received-txns">
+            <div class="spinner"></div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+</div>
+<style>
+.receive-card { text-align:center;padding:var(--space-6);background:var(--color-primary-dark);border-radius:var(--border-radius-lg);color:#fff;border-top:3px solid var(--color-accent); }
+.receive-avatar { width:72px;height:72px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:1.8rem;font-weight:700;margin:0 auto var(--space-3); }
+.receive-name { font-size:var(--font-size-lg);font-weight:700;margin-bottom:var(--space-4); }
+.receive-acct-label { font-size:var(--font-size-xs);opacity:.7;text-transform:uppercase;letter-spacing:.1em;margin-bottom:var(--space-2); }
+.receive-acct { font-size:var(--font-size-2xl);font-weight:700;letter-spacing:.1em;margin-bottom:var(--space-5);font-family:var(--font-family-mono); }
+.receive-card .btn-secondary { background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.4);color:#fff; }
+.receive-card .btn-secondary:hover { background:rgba(255,255,255,.25);color:#fff; }
+.receive-steps { list-style:none;display:flex;flex-direction:column;gap:var(--space-5); }
+.receive-steps li { display:flex;align-items:flex-start;gap:var(--space-4); }
+.step-num { width:36px;height:36px;border-radius:50%;background:var(--color-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:var(--font-size-sm);flex-shrink:0;margin-top:2px; }
+.receive-steps strong { font-size:var(--font-size-sm);font-weight:700; }
+.receive-steps p { font-size:var(--font-size-sm);color:var(--text-muted);margin-top:4px; }
+</style>
+<nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation"></nav>
+<script type="module" src="../js/pages/receive.js"></script>
+</body>
+</html>

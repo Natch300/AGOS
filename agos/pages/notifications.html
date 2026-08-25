@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AGOS — Notifications</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/global.css" />
+</head>
+<body>
+<div class="app-shell">
+  <aside id="sidebar" class="sidebar"></aside>
+  <div class="main-content">
+    <header id="top-header" class="top-header"></header>
+    <main class="page-body">
+      <div style="max-width:640px">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Notifications</h2>
+            <button class="btn btn-ghost btn-sm" id="btn-mark-all">Mark all as read</button>
+          </div>
+          <!-- Filter tabs -->
+          <div style="display:flex;gap:var(--space-2);padding:0 var(--space-5) var(--space-4);flex-wrap:wrap">
+            <button class="notif-filter-btn active" data-filter="all">All</button>
+            <button class="notif-filter-btn" data-filter="unread">Unread</button>
+            <button class="notif-filter-btn" data-filter="success">Money</button>
+            <button class="notif-filter-btn" data-filter="warning">Alerts</button>
+          </div>
+          <div id="notif-list">
+            <div class="spinner"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+<style>
+.notif-filter-btn { padding:var(--space-2) var(--space-4);border:2px solid var(--border-color);background:var(--bg-card);border-radius:var(--border-radius-full);font-family:var(--font-family);font-size:var(--font-size-xs);font-weight:700;cursor:pointer;transition:all var(--transition-fast);text-transform:uppercase;letter-spacing:.05em; }
+.notif-filter-btn.active,.notif-filter-btn:hover { border-color:var(--color-primary);background:var(--color-primary);color:#fff; }
+.notif-item { display:flex;align-items:flex-start;gap:var(--space-4);padding:var(--space-4) var(--space-5);border-bottom:1px solid var(--border-color);transition:background var(--transition-fast);cursor:pointer;position:relative; }
+.notif-item.unread { background:var(--color-info-bg); }
+.notif-item:hover { background:var(--color-gray-50); }
+.notif-item.unread:hover { background:#dbeafe; }
+.notif-item:last-child { border-bottom:none; }
+.notif-icon { width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;margin-top:2px; }
+.notif-icon.success { background:var(--color-success-bg); }
+.notif-icon.warning { background:var(--color-warning-bg); }
+.notif-icon.danger  { background:var(--color-danger-bg); }
+.notif-icon.info    { background:var(--color-info-bg); }
+.notif-body { flex:1;min-width:0; }
+.notif-title { font-weight:700;font-size:var(--font-size-sm);margin-bottom:3px; }
+.notif-msg { font-size:var(--font-size-sm);color:var(--text-secondary);line-height:1.5; }
+.notif-time { font-size:var(--font-size-xs);color:var(--text-muted);margin-top:var(--space-1); }
+.notif-unread-dot { position:absolute;top:var(--space-4);right:var(--space-5);width:10px;height:10px;border-radius:50%;background:var(--color-primary); }
+</style>
+<nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation"></nav>
+<script type="module" src="../js/pages/notifications.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AGOS Admin — Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+<div class="app-shell">
+  <aside id="sidebar" class="sidebar"></aside>
+  <div class="main-content">
+    <header id="top-header" class="top-header"></header>
+    <main class="page-body">
+
+      <!-- KPI Stats -->
+      <div class="stats-grid" id="kpi-stats">
+        <div class="stat-card accent-blue">
+          <div class="stat-icon"><i class="fas fa-coins" aria-hidden="true"></i></div>
+          <div class="stat-label">System Funds</div>
+          <div class="stat-value" id="kpi-funds">—</div>
+          <div class="stat-sub">Total in AGOS system</div>
+        </div>
+        <div class="stat-card accent-green">
+          <div class="stat-icon"><i class="fas fa-users" aria-hidden="true"></i></div>
+          <div class="stat-label">Total Users</div>
+          <div class="stat-value" id="kpi-users">—</div>
+          <div class="stat-sub">Active accounts</div>
+        </div>
+        <div class="stat-card accent-yellow">
+          <div class="stat-icon"><i class="fas fa-receipt" aria-hidden="true"></i></div>
+          <div class="stat-label">Transactions Today</div>
+          <div class="stat-value" id="kpi-txns-today">—</div>
+          <div class="stat-sub" id="kpi-txns-today-vol">Volume: —</div>
+        </div>
+        <div class="stat-card accent-red">
+          <div class="stat-icon"><i class="fas fa-triangle-exclamation" aria-hidden="true"></i></div>
+          <div class="stat-label">Flagged / Pending</div>
+          <div class="stat-value" id="kpi-flagged">—</div>
+          <div class="stat-sub">Needs review</div>
+        </div>
+      </div>
+
+      <!-- Row: Recent activity + Open tickets -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-5)">
+        <!-- Recent Transactions -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Recent Transactions</h2>
+            <a href="transactions.html" class="btn btn-ghost btn-sm">View all</a>
+          </div>
+          <div id="recent-txns"><div class="spinner"></div></div>
+        </div>
+
+        <!-- Open Tickets -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Open Support Tickets</h2>
+            <a href="tickets.html" class="btn btn-ghost btn-sm">View all</a>
+          </div>
+          <div id="open-tickets"><div class="spinner"></div></div>
+        </div>
+      </div>
+
+      <!-- Monthly chart placeholder + flagged alerts -->
+      <div class="card" style="margin-top:var(--space-5)">
+        <div class="card-header">
+          <h2 class="card-title"><i class="fas fa-triangle-exclamation" aria-hidden="true"></i> Flagged Transactions</h2>
+          <a href="transactions.html?filter=flagged" class="btn btn-warning btn-sm">Review All</a>
+        </div>
+        <div id="flagged-txns"><div class="spinner"></div></div>
+      </div>
+
+    </main>
+  </div>
+</div>
+<div class="loading-overlay hidden" id="loading-overlay"></div>
+<style>
+.mini-txn { display:flex;align-items:center;gap:var(--space-3);padding:var(--space-3) 0;border-bottom:1px solid var(--border-color); }
+.mini-txn:last-child { border-bottom:none; }
+.mini-txn-icon { width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0; }
+.mini-txn-meta { flex:1;min-width:0; }
+.mini-txn-title { font-size:var(--font-size-xs);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+.mini-txn-sub   { font-size:.65rem;color:var(--text-muted); }
+.mini-txn-amt   { font-size:var(--font-size-sm);font-weight:700;white-space:nowrap; }
+.ticket-mini { padding:var(--space-3) 0;border-bottom:1px solid var(--border-color); }
+.ticket-mini:last-child { border-bottom:none; }
+.ticket-mini-subject { font-size:var(--font-size-xs);font-weight:700;margin-bottom:3px; }
+.ticket-mini-meta    { font-size:.65rem;color:var(--text-muted); }
+@media (max-width:768px) {
+  div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns:1fr; }
+}
+</style>
+<script type="module" src="js/dashboard.js"></script>
+</body>
+</html>

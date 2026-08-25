@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AGOS Admin — Users</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+
+<body>
+  <div class="app-shell">
+    <aside id="sidebar" class="sidebar"></aside>
+    <div class="main-content">
+      <header id="top-header" class="top-header"></header>
+      <main class="page-body">
+
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">All Users</h2>
+            <div style="display:flex;gap:var(--space-3);flex-wrap:wrap">
+              <input type="search" id="user-search" class="form-control" placeholder="Search name, email, account…"
+                style="min-height:auto;padding:var(--space-2) var(--space-4);font-size:var(--font-size-sm);width:260px" />
+              <select id="user-filter" class="form-control"
+                style="min-height:auto;padding:var(--space-2) var(--space-3);font-size:var(--font-size-sm);width:140px">
+                <option value="">All</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+              </select>
+            </div>
+          </div>
+          <div class="table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>User</th>
+                  <th>Account No.</th>
+                  <th>Phone</th>
+                  <th>Balance</th>
+                  <th>Status</th>
+                  <th>Joined</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="users-tbody">
+                <tr>
+                  <td colspan="7" style="text-align:center;padding:var(--space-8)">
+                    <div class="spinner" style="margin:0 auto"></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="pagination" id="users-pagination"></div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- User Detail / Edit Modal -->
+  <div id="user-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="user-modal-title">
+    <div class="modal" style="max-width:560px">
+      <div class="modal-header">
+        <h3 class="modal-title" id="user-modal-title">User Details</h3>
+        <button class="modal-close" id="user-modal-close" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body" id="user-modal-body"></div>
+      <div class="modal-footer" id="user-modal-footer"></div>
+    </div>
+  </div>
+
+  <div class="loading-overlay hidden" id="loading-overlay"></div>
+  <script type="module" src="js/users.js"></script>
+</body>
+
+</html>

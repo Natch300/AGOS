@@ -1,0 +1,141 @@
+/* ============================================================
+   AGOS — CSS Variables & Design Tokens
+   ============================================================ */
+
+:root {
+  /* Brand Colors */
+  --color-primary:        #1a56a0;
+  --color-primary-dark:   #0f3d7a;
+  --color-primary-light:  #2e7dd1;
+  --color-accent:         #00b4d8;
+  --color-accent-dark:    #0096b7;
+
+  /* Semantic Colors */
+  --color-success:        #16a34a;
+  --color-success-bg:     #dcfce7;
+  --color-warning:        #d97706;
+  --color-warning-bg:     #fef3c7;
+  --color-danger:         #dc2626;
+  --color-danger-bg:      #fee2e2;
+  --color-info:           #2563eb;
+  --color-info-bg:        #dbeafe;
+
+  /* Neutrals */
+  --color-white:          #ffffff;
+  --color-gray-50:        #f9fafb;
+  --color-gray-100:       #f3f4f6;
+  --color-gray-200:       #e5e7eb;
+  --color-gray-300:       #d1d5db;
+  --color-gray-400:       #9ca3af;
+  --color-gray-500:       #6b7280;
+  --color-gray-600:       #4b5563;
+  --color-gray-700:       #374151;
+  --color-gray-800:       #1f2937;
+  --color-gray-900:       #111827;
+
+  /* Background */
+  --bg-page:              #f4f5f7;
+  --bg-card:              #ffffff;
+  --bg-sidebar:           #0c2e5c;
+  --bg-sidebar-text:      #a9bdda;
+  --bg-header:            #1a56a0;
+
+  /* Text */
+  --text-primary:         #111827;
+  --text-secondary:       #4b5563;
+  --text-muted:           #8a94a3;
+  --text-on-primary:      #ffffff;
+  --text-on-dark:         #f9fafb;
+
+  /* Border */
+  --border-color:         #e2e5eb;
+  --border-radius-sm:     4px;
+  --border-radius:        6px;
+  --border-radius-lg:     8px;
+  --border-radius-xl:     10px;
+  --border-radius-full:   9999px;
+
+  /* Shadow — single-source, low-diffusion. No colored glows. */
+  --shadow-sm:    0 1px 2px rgba(15,23,42,.06);
+  --shadow:       0 1px 3px rgba(15,23,42,.08), 0 1px 2px rgba(15,23,42,.04);
+  --shadow-md:    0 4px 10px rgba(15,23,42,.10);
+  --shadow-lg:    0 10px 24px rgba(15,23,42,.14);
+
+  /* Typography - Mobile-first sizing */
+  --font-family:          'Inter', -apple-system, 'Segoe UI', system-ui, sans-serif;
+  --font-family-mono:     'JetBrains Mono', ui-monospace, 'SF Mono', Consolas, monospace;
+  --font-size-xs:         0.75rem;   /* 12px */
+  --font-size-sm:         0.875rem;  /* 14px */
+  --font-size-base:       1rem;      /* 16px */
+  --font-size-md:         1.0625rem; /* 17px - better for mobile */
+  --font-size-lg:         1.125rem;  /* 18px */
+  --font-size-xl:         1.25rem;   /* 20px */
+  --font-size-2xl:        1.5rem;    /* 24px */
+  --font-size-3xl:        1.875rem;  /* 30px */
+  --font-size-4xl:        2.25rem;   /* 36px */
+
+  /* Spacing - Mobile-optimized */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.25rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* Transitions */
+  --transition-fast:   0.15s ease;
+  --transition:        0.25s ease;
+  --transition-slow:   0.4s ease;
+
+  /* Layout - Mobile-first */
+  --sidebar-width:     280px;
+  --header-height:     56px; /* Reduced for mobile */
+  --content-max-width: 100%;
+  --pin-pad-btn-size:  64px; /* Better mobile touch target */
+  
+  /* Mobile-specific touch targets */
+  --touch-target-min:  44px; /* iOS minimum recommended */
+  --bottom-nav-height: 64px; /* For future bottom nav */
+
+  /* Accessibility: text scale factor (controlled by JS) */
+  --text-scale: 1;
+}
+
+/* ============================================================
+   MOBILE-FIRST RESPONSIVE BREAKPOINTS
+   ============================================================ */
+/* Mobile adjustments at larger sizes */
+@media (min-width: 768px) {
+  :root {
+    --header-height: 64px;
+    --pin-pad-btn-size: 72px;
+    --content-max-width: 900px;
+  }
+}
+
+/* ============================================================
+   HIGH CONTRAST THEME
+   ============================================================ */
+[data-theme="high-contrast"] {
+  --color-primary:        #003080;
+  --color-primary-dark:   #001f5c;
+  --color-primary-light:  #0050c8;
+  --color-accent:         #007fa3;
+  --bg-page:              #000000;
+  --bg-card:              #1a1a1a;
+  --bg-sidebar:           #000000;
+  --bg-sidebar-text:      #ffffff;
+  --bg-header:            #000000;
+  --text-primary:         #ffffff;
+  --text-secondary:       #e0e0e0;
+  --text-muted:           #b0b0b0;
+  --border-color:         #555555;
+  --shadow:               0 4px 12px rgba(255,255,255,.05);
+  --color-gray-100:       #2a2a2a;
+  --color-gray-200:       #3a3a3a;
+  --color-gray-50:        #1a1a1a;
+}

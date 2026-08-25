@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AGOS — Send Money</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/global.css" />
+</head>
+<body>
+<div class="app-shell">
+  <aside id="sidebar" class="sidebar"></aside>
+  <div class="main-content">
+    <header id="top-header" class="top-header"></header>
+    <main class="page-body">
+
+      <div class="card" style="max-width:560px">
+        <!-- Step indicators -->
+        <div class="step-bar" id="step-bar" aria-label="Steps">
+          <div class="step active" data-step="1"><span>1</span> Recipient</div>
+          <div class="step-line"></div>
+          <div class="step" data-step="2"><span>2</span> Amount</div>
+          <div class="step-line"></div>
+          <div class="step" data-step="3"><span>3</span> Confirm</div>
+          <div class="step-line"></div>
+          <div class="step" data-step="4"><span>4</span> Done</div>
+        </div>
+
+        <!-- Step 1: Recipient -->
+        <div id="step-1" class="step-panel">
+          <h2 style="margin-bottom:var(--space-5)">Who are you sending to?</h2>
+
+          <!-- Saved contacts quick pick -->
+          <div class="form-group">
+            <label class="form-label">Saved Contacts</label>
+            <div id="contact-chips" class="contact-chips">
+              <div class="spinner" style="width:24px;height:24px;border-width:3px;margin:0"></div>
+            </div>
+          </div>
+
+          <div class="divider" style="margin:var(--space-4) 0"><span style="background:var(--bg-card);padding:0 var(--space-3);color:var(--text-muted);font-size:var(--font-size-sm)">— or enter manually —</span></div>
+
+          <div class="form-group">
+            <label class="form-label" for="recv-acct">Account Number</label>
+            <input type="text" id="recv-acct" class="form-control" placeholder="e.g. AGS0012345"
+                   autocomplete="off" style="text-transform:uppercase" />
+            <p class="form-hint">AGOS account number starts with AGS</p>
+          </div>
+
+          <div id="recv-preview" class="recipient-preview hidden" aria-live="polite">
+            <div class="preview-avatar" id="prev-avatar"></div>
+            <div>
+              <div class="preview-name" id="prev-name"></div>
+              <div class="preview-acct" id="prev-acct-disp"></div>
+            </div>
+          </div>
+
+          <div id="step1-error" class="form-error hidden" role="alert"></div>
+          <div style="display:flex;gap:var(--space-3);margin-top:var(--space-6)">
+            <button class="btn btn-primary btn-full btn-lg" id="btn-step1-next">Next →</button>
+          </div>
+        </div>
+
+        <!-- Step 2: Amount -->
+        <div id="step-2" class="step-panel hidden">
+          <h2 style="margin-bottom:var(--space-5)">How much?</h2>
+          <div class="recipient-preview" id="step2-recv-preview" aria-label="Recipient">
+            <div class="preview-avatar" id="step2-avatar"></div>
+            <div>
+              <div class="preview-name" id="step2-name"></div>
+              <div class="preview-acct" id="step2-acct"></div>
+            </div>
+          </div>
+          <div class="form-group" style="margin-top:var(--space-5)">
+            <label class="form-label" for="send-amount">Amount (PHP)</label>
+            <div style="position:relative">
+              <span style="position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:var(--font-size-lg);font-weight:700;color:var(--text-muted)">₱</span>
+              <input type="number" id="send-amount" class="form-control" placeholder="0.00"
+                     min="1" step="0.01" style="padding-left:40px;font-size:var(--font-size-xl);font-weight:700" inputmode="decimal" />
+            </div>
+            <p class="form-hint">Available balance: <strong id="avail-balance"></strong></p>
+          </div>
+          <div class="amount-presets" aria-label="Quick amounts">
+            <button class="preset-btn" data-amount="100">₱100</button>
+            <button class="preset-btn" data-amount="200">₱200</button>
+            <button class="preset-btn" data-amount="500">₱500</button>
+            <button class="preset-btn" data-amount="1000">₱1,000</button>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="send-note">Note (optional)</label>
+            <input type="text" id="send-note" class="form-control" placeholder="e.g. For groceries"
+                   maxlength="100" />
+          </div>
+          <div id="step2-error" class="form-error hidden" role="alert"></div>
+          <div style="display:flex;gap:var(--space-3);margin-top:var(--space-5)">
+            <button class="btn btn-ghost" id="btn-step2-back">← Back</button>
+            <button class="btn btn-primary btn-full btn-lg" id="btn-step2-next">Review →</button>
+          </div>
+        </div>
+
+        <!-- Step 3: Confirm -->
+        <div id="step-3" class="step-panel hidden">
+          <h2 style="margin-bottom:var(--space-5)">Review Transfer</h2>
+          <div class="confirm-box" id="confirm-box" aria-label="Transfer summary"></div>
+          <div class="alert alert-warning" style="margin-top:var(--space-4)">
+            <i class="fas fa-triangle-exclamation" aria-hidden="true"></i> Please double-check all details. Transfers cannot be reversed once confirmed.
+          </div>
+          <div id="step3-error" class="form-error hidden" role="alert"></div>
+          <div style="display:flex;gap:var(--space-3);margin-top:var(--space-5)">
+            <button class="btn btn-ghost" id="btn-step3-back">← Back</button>
+            <button class="btn btn-primary btn-full btn-lg" id="btn-step3-confirm">Confirm Transfer</button>
+          </div>
+        </div>
+
+        <!-- Step 4: Success -->
+        <div id="step-4" class="step-panel hidden" role="region" aria-label="Transfer result">
+          <div class="success-screen" id="success-screen"></div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+<nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation"></nav>
+<div class="loading-overlay hidden" id="loading-overlay"></div>
+<style>
+.step-bar { display:flex; align-items:center; margin-bottom:var(--space-6); }
+.step { display:flex; align-items:center; gap:6px; font-size:var(--font-size-xs); font-weight:600; color:var(--text-muted); white-space:nowrap; }
+.step span { width:24px;height:24px;border-radius:50%;border:2px solid var(--color-gray-300);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.7rem;background:var(--bg-card); }
+.step.active { color:var(--color-primary); }
+.step.active span { border-color:var(--color-primary);background:var(--color-primary);color:#fff; }
+.step.done span { border-color:var(--color-success);background:var(--color-success);color:#fff; }
+.step-line { flex:1;height:2px;background:var(--color-gray-200);margin:0 var(--space-2); }
+.contact-chips { display:flex;flex-wrap:wrap;gap:var(--space-2);min-height:40px; }
+.contact-chip { display:flex;align-items:center;gap:var(--space-2);padding:var(--space-2) var(--space-3);background:var(--color-gray-100);border:2px solid transparent;border-radius:var(--border-radius-full);cursor:pointer;font-size:var(--font-size-sm);font-weight:600;transition:all var(--transition-fast); }
+.contact-chip:hover,.contact-chip.selected { background:var(--color-primary);color:#fff;border-color:var(--color-primary); }
+.contact-chip-avatar { width:28px;height:28px;border-radius:50%;background:var(--color-accent);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:#fff; }
+.recipient-preview { display:flex;align-items:center;gap:var(--space-4);padding:var(--space-4);background:var(--color-success-bg);border-radius:var(--border-radius);border:2px solid #bbf7d0; }
+.preview-avatar { width:48px;height:48px;border-radius:50%;background:var(--color-primary);display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:700;color:#fff;flex-shrink:0; }
+.preview-name { font-weight:700;font-size:var(--font-size-md); }
+.preview-acct { font-size:var(--font-size-sm);color:var(--text-muted); }
+.amount-presets { display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4); }
+.preset-btn { padding:var(--space-2) var(--space-4);border:2px solid var(--border-color);background:var(--bg-card);border-radius:var(--border-radius);font-family:var(--font-family);font-size:var(--font-size-sm);font-weight:600;cursor:pointer;transition:all var(--transition-fast); }
+.preset-btn:hover { border-color:var(--color-primary);color:var(--color-primary);background:var(--color-info-bg); }
+.confirm-row { display:flex;justify-content:space-between;align-items:center;padding:var(--space-4) 0;border-bottom:1px solid var(--border-color); }
+.confirm-row:last-child { border-bottom:none; }
+.confirm-lbl { color:var(--text-muted);font-size:var(--font-size-sm);font-weight:600; }
+.confirm-val { font-weight:700;font-size:var(--font-size-sm);text-align:right; }
+.confirm-amount { font-family:var(--font-family-mono);font-variant-numeric:tabular-nums;font-size:var(--font-size-2xl);font-weight:700;color:var(--color-danger);text-align:center;padding:var(--space-4) 0; }
+.success-screen { text-align:center;padding:var(--space-8) 0; }
+.success-screen .success-icon { font-size:5rem;margin-bottom:var(--space-4); }
+.success-screen h2 { font-size:var(--font-size-xl);margin-bottom:var(--space-2); }
+.success-screen p { color:var(--text-muted);margin-bottom:var(--space-1); }
+.success-screen .ref { font-size:var(--font-size-xs);background:var(--color-gray-100);padding:var(--space-2) var(--space-4);border-radius:var(--border-radius);font-family:var(--font-family-mono);margin-top:var(--space-4);display:inline-block; }
+</style>
+<script type="module" src="../js/pages/send.js"></script>
+</body>
+</html>

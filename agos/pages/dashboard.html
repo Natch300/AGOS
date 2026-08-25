@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AGOS — Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/global.css" />
+  <link rel="stylesheet" href="../css/dashboard.css" />
+</head>
+<body>
+<div class="app-shell">
+  <aside id="sidebar" class="sidebar" aria-label="Navigation sidebar"></aside>
+  <div class="main-content">
+    <header id="top-header" class="top-header" role="banner"></header>
+    <main class="page-body" id="page-body" aria-label="Dashboard content">
+
+      <!-- Balance Card -->
+      <section class="balance-card" aria-label="Account balance">
+        <div class="balance-header">
+          <div>
+            <p class="balance-label" id="balance-greeting">Good morning</p>
+            <p class="balance-name" id="balance-name">Loading...</p>
+          </div>
+          <button class="btn btn-ghost btn-sm balance-toggle" id="balance-toggle" aria-label="Show/hide balance" aria-pressed="false">
+            <i class="fas fa-eye"></i> Show
+          </button>
+        </div>
+        <div class="balance-amount" id="balance-amount" aria-live="polite">••••••</div>
+        <div class="balance-acct" id="balance-acct">Account: —</div>
+      </section>
+
+      <!-- Quick Actions -->
+      <section class="quick-actions" aria-label="Quick actions">
+        <a href="send.html" class="quick-action-btn" aria-label="Send money">
+          <span class="qa-icon"><i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
+          <span class="qa-label">Send</span>
+        </a>
+        <a href="receive.html" class="quick-action-btn" aria-label="Receive money">
+          <span class="qa-icon"><i class="fas fa-inbox" aria-hidden="true"></i></span>
+          <span class="qa-label">Receive</span>
+        </a>
+        <a href="bills.html" class="quick-action-btn" aria-label="Pay bills">
+          <span class="qa-icon"><i class="fas fa-file-invoice-dollar" aria-hidden="true"></i></span>
+          <span class="qa-label">Bills</span>
+        </a>
+        <a href="history.html" class="quick-action-btn" aria-label="Transaction history">
+          <span class="qa-icon"><i class="fas fa-clock-rotate-left" aria-hidden="true"></i></span>
+          <span class="qa-label">History</span>
+        </a>
+      </section>
+
+      <!-- Monthly Summary -->
+      <div class="stats-grid" id="monthly-stats">
+        <div class="stat-card">
+          <div class="stat-label">This Month Received</div>
+          <div class="stat-value" id="stat-received">₱0.00</div>
+          <div class="stat-change up" id="stat-received-sub"></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">This Month Sent</div>
+          <div class="stat-value" id="stat-sent">₱0.00</div>
+          <div class="stat-change down" id="stat-sent-sub"></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Bills Paid</div>
+          <div class="stat-value" id="stat-bills">₱0.00</div>
+          <div class="stat-change" id="stat-bills-sub"></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Total Transactions</div>
+          <div class="stat-value" id="stat-count">0</div>
+          <div class="stat-change" id="stat-count-sub">this month</div>
+        </div>
+      </div>
+
+      <!-- Recent Transactions -->
+      <div class="card" style="margin-top:var(--space-2)">
+        <div class="card-header">
+          <h2 class="card-title">Recent Transactions</h2>
+          <a href="history.html" class="btn btn-ghost btn-sm">View all <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+        <div id="recent-txns">
+          <div class="spinner"></div>
+        </div>
+      </div>
+
+      <!-- Fraud alert banner (hidden by default) -->
+      <div id="fraud-banner" class="alert alert-warning hidden" role="alert" style="margin-top:var(--space-4)">
+        <i class="fas fa-triangle-exclamation" aria-hidden="true"></i> <strong>Suspicious Activity Detected.</strong>
+        One or more of your recent transactions has been flagged for review.
+        <a href="history.html">View flagged transactions <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+      </div>
+
+    </main>
+  </div>
+</div>
+<nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation"></nav>
+<div class="loading-overlay hidden" id="loading-overlay"></div>
+<script type="module" src="../js/pages/dashboard.js"></script>
+</body>
+</html>

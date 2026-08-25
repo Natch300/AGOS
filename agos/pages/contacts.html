@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AGOS — Saved Contacts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" />
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/global.css" />
+</head>
+<body>
+<div class="app-shell">
+  <aside id="sidebar" class="sidebar"></aside>
+  <div class="main-content">
+    <header id="top-header" class="top-header"></header>
+    <main class="page-body">
+      <div style="max-width:640px">
+
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Saved Contacts</h2>
+            <button class="btn btn-primary btn-sm" id="btn-add-contact">+ Add Contact</button>
+          </div>
+          <div id="contacts-list">
+            <div class="spinner"></div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+</div>
+
+<nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation"></nav>
+
+<!-- Add/Edit Contact Modal -->
+<div id="contact-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 class="modal-title" id="contact-modal-title">Add Contact</h3>
+      <button class="modal-close" id="contact-modal-close" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label" for="c-nickname">Nickname / Name</label>
+        <input type="text" id="c-nickname" class="form-control" placeholder="e.g. Ate Maria" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="c-acct">Account Number</label>
+        <input type="text" id="c-acct" class="form-control" placeholder="e.g. AGS0012345" style="text-transform:uppercase" />
+        <p class="form-hint">AGOS account numbers start with AGS</p>
+      </div>
+      <div id="c-preview" class="hidden" style="display:none;align-items:center;gap:var(--space-3);padding:var(--space-3);background:var(--color-success-bg);border-radius:var(--border-radius);border:2px solid #bbf7d0;margin-bottom:var(--space-4)">
+        <span id="c-preview-icon" style="font-size:1.5rem;font-weight:700;color:var(--color-primary)"></span>
+        <div>
+          <div id="c-preview-name" style="font-weight:700"></div>
+          <div id="c-preview-acct" style="font-size:var(--font-size-xs);color:var(--text-muted)"></div>
+        </div>
+      </div>
+      <div id="c-error" class="form-error hidden" role="alert"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" id="c-cancel">Cancel</button>
+      <button class="btn btn-primary" id="c-save">Save Contact</button>
+    </div>
+  </div>
+</div>
+
+<!-- Delete confirm modal -->
+<div id="delete-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="del-modal-title">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 class="modal-title" id="del-modal-title">Remove Contact</h3>
+      <button class="modal-close" id="del-modal-close" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body">
+      <p>Are you sure you want to remove <strong id="del-name"></strong> from your contacts?</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" id="del-cancel">Cancel</button>
+      <button class="btn btn-danger" id="del-confirm">Remove</button>
+    </div>
+  </div>
+</div>
+
+<style>
+.contact-item { display:flex;align-items:center;gap:var(--space-4);padding:var(--space-4) var(--space-5);border-bottom:1px solid var(--border-color);transition:background var(--transition-fast); }
+.contact-item:hover { background:var(--color-gray-50); }
+.contact-item:last-child { border-bottom:none; }
+.contact-avatar { width:48px;height:48px;border-radius:50%;background:var(--color-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1rem;flex-shrink:0; }
+.contact-info { flex:1;min-width:0; }
+.contact-name { font-weight:700;font-size:var(--font-size-sm); }
+.contact-acct { font-size:var(--font-size-xs);color:var(--text-muted);font-family:var(--font-family-mono); }
+.contact-actions { display:flex;gap:var(--space-2); }
+</style>
+<script type="module" src="../js/pages/contacts.js"></script>
+</body>
+</html>
