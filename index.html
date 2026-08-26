@@ -108,9 +108,11 @@
               <button type="button" class="pw-toggle" id="pw-toggle" aria-label="Show/hide password"><i class="fas fa-eye"></i></button>
             </div>
           </div>
-          <div id="pw-error" class="form-error" style="display:none" role="alert"></div>
-          <button type="button" class="btn btn-primary btn-full btn-lg" id="btn-pw-login">Sign In</button>
-          <button type="button" class="btn btn-ghost btn-full" id="btn-forgot">Forgot Password?</button>
+          <div id="pw-error" class="form-error hidden" role="alert"></div>
+          <div class="pw-actions">
+            <button type="button" class="btn btn-primary btn-full btn-lg" id="btn-pw-login">Sign In</button>
+            <button type="button" class="btn btn-ghost btn-full" id="btn-forgot">Forgot Password?</button>
+          </div>
         </div>
 
         <!-- Register link -->
@@ -148,7 +150,7 @@
           <div id="reg-error" class="form-error" style="display:none" role="alert"></div>
           <div id="reg-success" class="alert alert-success" style="display:none" role="status"></div>
           <button type="button" class="btn btn-success btn-full btn-lg" id="btn-register">Create My Account</button>
-          <button type="button" class="btn btn-ghost btn-full" id="btn-hide-register">← Back to Sign In</button>
+          <button type="button" class="btn btn-ghost btn-full" id="btn-hide-register" style="margin-top:8px">← Back to Sign In</button>
         </div>
 
       </div>
