@@ -530,10 +530,11 @@
     max-height: 0;
     margin-bottom: 0;
   }
-  .pin-keypad-wrap.open {
-    max-height: 320px;
-    margin-bottom: var(--space-2);
-  }
+.pin-keypad-wrap.open {
+  max-height: 440px;
+  margin-bottom: var(--space-2);
+  padding-bottom: var(--space-2);
+}
   .pin-keypad {
     gap: var(--space-3);
     max-width: 280px;
@@ -638,8 +639,9 @@
     margin-bottom: var(--space-1);
   }
   .pin-keypad-wrap.open {
-    max-height: 200px;
+    max-height: 260px;
     margin-bottom: var(--space-1);
+    padding-bottom: var(--space-1);
   }
   .pin-keypad {
     gap: var(--space-2);
