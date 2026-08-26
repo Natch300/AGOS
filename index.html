@@ -69,22 +69,28 @@
             <p class="pin-hint" id="pin-hint">Use the keypad below to enter your PIN</p>
           </div>
 
-          <div class="pin-keypad" role="group" aria-label="PIN keypad">
-            <button type="button" class="pin-key" data-val="1" aria-label="1">1</button>
-            <button type="button" class="pin-key" data-val="2" aria-label="2">2<span>ABC</span></button>
-            <button type="button" class="pin-key" data-val="3" aria-label="3">3<span>DEF</span></button>
-            <button type="button" class="pin-key" data-val="4" aria-label="4">4<span>GHI</span></button>
-            <button type="button" class="pin-key" data-val="5" aria-label="5">5<span>JKL</span></button>
-            <button type="button" class="pin-key" data-val="6" aria-label="6">6<span>MNO</span></button>
-            <button type="button" class="pin-key" data-val="7" aria-label="7">7<span>PQRS</span></button>
-            <button type="button" class="pin-key" data-val="8" aria-label="8">8<span>TUV</span></button>
-            <button type="button" class="pin-key" data-val="9" aria-label="9">9<span>WXYZ</span></button>
-            <button type="button" class="pin-key pin-key-empty" aria-hidden="true" disabled></button>
-            <button type="button" class="pin-key" data-val="0" aria-label="0">0</button>
-            <button type="button" class="pin-key pin-key-del" id="pin-del" aria-label="Delete last digit"><i class="fas fa-backspace"></i></button>
+          <button type="button" class="pin-keypad-toggle" id="pin-keypad-toggle" aria-expanded="false">
+            <i class="fas fa-th"></i> Show PIN Keypad
+          </button>
+
+          <div class="pin-keypad-wrap" id="pin-keypad-wrap">
+            <div class="pin-keypad" role="group" aria-label="PIN keypad">
+              <button type="button" class="pin-key" data-val="1" aria-label="1">1</button>
+              <button type="button" class="pin-key" data-val="2" aria-label="2">2</button>
+              <button type="button" class="pin-key" data-val="3" aria-label="3">3</button>
+              <button type="button" class="pin-key" data-val="4" aria-label="4">4</button>
+              <button type="button" class="pin-key" data-val="5" aria-label="5">5</button>
+              <button type="button" class="pin-key" data-val="6" aria-label="6">6</button>
+              <button type="button" class="pin-key" data-val="7" aria-label="7">7</button>
+              <button type="button" class="pin-key" data-val="8" aria-label="8">8</button>
+              <button type="button" class="pin-key" data-val="9" aria-label="9">9</button>
+              <button type="button" class="pin-key pin-key-empty" aria-hidden="true" disabled></button>
+              <button type="button" class="pin-key" data-val="0" aria-label="0">0</button>
+              <button type="button" class="pin-key pin-key-del" id="pin-del" aria-label="Delete last digit"><i class="fas fa-backspace"></i></button>
+            </div>
           </div>
 
-          <div id="pin-error" class="form-error" style="display:none" role="alert"></div>
+          <div id="pin-error" class="form-error hidden" role="alert"></div>
 
           <button type="button" class="btn btn-primary btn-full btn-lg" id="btn-pin-login">Sign In with PIN</button>
         </div>
@@ -278,6 +284,19 @@
     updatePinDots();
     hideErr('pin-error');
   });
+
+  // PIN keypad toggle (GCash-style)
+  const pinKeypadToggle = document.getElementById('pin-keypad-toggle');
+  const pinKeypadWrap = document.getElementById('pin-keypad-wrap');
+  if (pinKeypadToggle && pinKeypadWrap) {
+    pinKeypadToggle.addEventListener('click', function() {
+      const isOpen = pinKeypadWrap.classList.toggle('open');
+      pinKeypadToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      pinKeypadToggle.innerHTML = isOpen
+        ? '<i class="fas fa-chevron-up"></i> Hide PIN Keypad'
+        : '<i class="fas fa-th"></i> Show PIN Keypad';
+    });
+  }
 
   // Keyboard support — only when PIN panel is visible AND focus is inside it
   document.addEventListener('keydown', function(e) {

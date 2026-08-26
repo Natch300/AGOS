@@ -1,5 +1,5 @@
 /* ============================================================
-   AGOS — Login Page Styles (Professional Modern Design)
+   AGOS — Login Page Styles (Mobile-first, no scroll, GCash-like)
    ============================================================ */
 
 .login-body {
@@ -28,7 +28,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-12) var(--space-10);
+  padding: var(--space-4) var(--space-4);
   position: relative;
   overflow: hidden;
   border-right: 3px solid var(--color-accent);
@@ -48,70 +48,65 @@
   z-index: 1;
   color: #fff;
   text-align: center;
-  max-width: 320px;
+  max-width: 280px;
 }
 .brand-logo {
-  font-size: 3rem;
-  margin-bottom: var(--space-6);
+  font-size: 2.25rem;
+  margin-bottom: var(--space-3);
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 88px;
-  height: 88px;
+  width: 64px;
+  height: 64px;
   background: var(--color-accent);
   border-radius: var(--border-radius);
   margin-left: auto;
   margin-right: auto;
 }
-.brand-logo i {
-  color: #fff;
-}
+.brand-logo i { color: #fff; }
 .brand-name {
-  font-size: var(--font-size-4xl);
+  font-size: var(--font-size-2xl);
   font-weight: 800;
   letter-spacing: .12em;
-  margin-bottom: var(--space-2);
+  margin-bottom: var(--space-1);
 }
 .brand-tagline {
-  font-size: var(--font-size-md);
+  font-size: var(--font-size-sm);
   opacity: .9;
-  margin-bottom: var(--space-10);
+  margin-bottom: var(--space-4);
   font-weight: 400;
-  line-height: 1.4;
+  line-height: 1.3;
 }
 .brand-features {
   list-style: none;
   text-align: left;
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--space-2);
 }
 .brand-features li {
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   opacity: .95;
   font-weight: 500;
   display: flex;
   align-items: center;
-  gap: var(--space-3);
+  gap: var(--space-2);
 }
-.brand-features i {
-  flex-shrink: 0;
-  font-size: var(--font-size-base);
-}
+.brand-features i { flex-shrink: 0; font-size: var(--font-size-xs); }
 
 /* ---- Right form panel ---- */
 .login-form-panel {
   flex: 1;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: var(--space-4) var(--space-5);
+  padding: var(--space-3) var(--space-3);
   overflow: hidden;
   background: #ffffff;
 }
 .login-form-inner {
   width: 100%;
-  max-width: 420px;
+  max-width: 360px;
 }
 .login-form-panel .form-control {
   color: #102a43;
@@ -119,27 +114,26 @@
   border: 1px solid #b8c4d1;
   caret-color: var(--color-primary);
 }
-.login-form-panel .form-control::placeholder {
-  color: #66788a;
-  opacity: 1;
-}
+.login-form-panel .form-control::placeholder { color: #66788a; opacity: 1; }
 .login-form-panel .form-control:focus {
   color: #102a43;
   background: #ffffff;
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 4px rgba(26, 86, 160, .14);
+  box-shadow: 0 0 0 3px rgba(26, 86, 160, .12);
 }
+
+/* ---- Mobile logo ---- */
 .login-mobile-logo {
   display: none;
   align-items: center;
   justify-content: center;
-  gap: var(--space-3);
-  margin-bottom: var(--space-8);
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
 }
 .brand-logo-sm {
-  font-size: 2.25rem;
-  width: 52px;
-  height: 52px;
+  font-size: 1.5rem;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -148,7 +142,7 @@
   color: #fff;
 }
 .brand-name-sm {
-  font-size: var(--font-size-2xl);
+  font-size: var(--font-size-lg);
   font-weight: 800;
   color: var(--color-primary);
   letter-spacing: .08em;
@@ -157,22 +151,22 @@
 /* ---- Tabs ---- */
 .login-tabs {
   display: flex;
-  gap: var(--space-2);
-  margin-bottom: var(--space-4);
+  gap: var(--space-1);
+  margin-bottom: var(--space-3);
   background: transparent;
   padding: 0;
   border-bottom: 2px solid var(--border-color);
 }
 .login-tab {
   flex: 1;
-  padding: var(--space-2) var(--space-3);
+  padding: var(--space-2) var(--space-1);
   border: none;
   border-bottom: 2px solid transparent;
   border-radius: 0;
   background: transparent;
   color: var(--text-secondary);
   font-family: var(--font-family);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   font-weight: 600;
   cursor: pointer;
   transition: all var(--transition-fast);
@@ -181,39 +175,35 @@
   justify-content: center;
   gap: var(--space-1);
   margin-bottom: -2px;
-  min-height: 40px;
+  min-height: 36px;
 }
-.login-tab i {
-  font-size: var(--font-size-base);
-}
+.login-tab i { font-size: var(--font-size-xs); }
 .login-tab.active {
   background: transparent;
   color: var(--color-primary);
   border-bottom-color: var(--color-primary);
 }
-.login-tab:hover:not(.active) {
-  color: var(--text-primary);
-}
+.login-tab:hover:not(.active) { color: var(--text-primary); }
 
 /* ---- PIN dots display ---- */
 .pin-display-wrap {
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-2);
   text-align: center;
 }
 .pin-display-wrap .form-label {
   font-weight: 600;
   color: var(--text-primary);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
 }
 .pin-dots {
   display: flex;
-  gap: var(--space-3);
+  gap: var(--space-2);
   justify-content: center;
-  margin: var(--space-3) 0 var(--space-1);
+  margin: var(--space-2) 0;
 }
 .pin-dot {
-  width: 18px;
-  height: 18px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   border: 2px solid var(--color-gray-300);
   background: transparent;
@@ -231,26 +221,63 @@
   animation: shake .4s ease;
 }
 .pin-hint {
-  font-size: var(--font-size-xs);
+  font-size: 10px;
   color: var(--text-muted);
   margin-top: var(--space-1);
 }
 
-/* ---- PIN keypad ---- */
+/* ---- PIN keypad toggle (GCash-style) ---- */
+.pin-keypad-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  width: 100%;
+  padding: var(--space-2);
+  border: 1.5px dashed var(--border-color);
+  border-radius: var(--border-radius);
+  background: var(--color-gray-50);
+  color: var(--color-primary);
+  font-family: var(--font-family);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  margin-bottom: var(--space-2);
+  min-height: 40px;
+}
+.pin-keypad-toggle:hover {
+  background: var(--color-info-bg);
+  border-color: var(--color-primary);
+}
+.pin-keypad-toggle i {
+  font-size: var(--font-size-sm);
+}
+
+.pin-keypad-wrap {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition), margin var(--transition);
+  margin-bottom: 0;
+}
+.pin-keypad-wrap.open {
+  max-height: 300px;
+  margin-bottom: var(--space-2);
+}
+
 .pin-keypad {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-2);
-  margin-bottom: var(--space-3);
 }
 .pin-key {
   aspect-ratio: 1;
-  min-height: 48px;
+  min-height: 44px;
   border-radius: var(--border-radius);
   border: 1.5px solid var(--border-color);
   background: #ffffff;
   font-family: var(--font-family-mono);
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-base);
   font-weight: 700;
   color: #102a43;
   cursor: pointer;
@@ -258,7 +285,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1px;
+  gap: 0;
   transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
   line-height: 1;
   user-select: none;
@@ -266,20 +293,15 @@
 }
 .pin-key[data-val] { color: #102a43; background: #ffffff; }
 .pin-key[data-val]::first-line { color: #102a43; }
-.pin-key i { font-size: var(--font-size-base); }
+.pin-key i { font-size: var(--font-size-sm); }
 .pin-key span {
-  font-size: 9px;
-  font-weight: 500;
-  color: var(--text-muted);
-  letter-spacing: .02em;
-  margin-top: 1px;
+  display: none;
 }
 .pin-key:hover:not(:disabled) {
   background: var(--color-primary);
   color: #fff;
   border-color: var(--color-primary);
 }
-.pin-key:hover span { color: rgba(255,255,255,.8); }
 .pin-key:active:not(:disabled) {
   background: var(--color-primary-dark);
   border-color: var(--color-primary-dark);
@@ -298,49 +320,43 @@
 
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
-  20%, 60% { transform: translateX(-6px); }
-  40%, 80% { transform: translateX(6px); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
 }
 
 /* ---- Password field ---- */
-.input-pw-wrap {
-  position: relative;
-}
-.input-pw-wrap .form-control {
-  padding-right: 48px;
-}
+.input-pw-wrap { position: relative; }
+.input-pw-wrap .form-control { padding-right: 40px; }
 .pw-toggle {
   position: absolute;
-  right: 16px;
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
   background: none;
   border: none;
   cursor: pointer;
-  font-size: var(--font-size-lg);
-  padding: var(--space-2);
+  font-size: var(--font-size-sm);
+  padding: var(--space-1);
   color: var(--text-muted);
   transition: color var(--transition-fast);
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.pw-toggle:hover {
-  color: var(--color-primary);
-}
+.pw-toggle:hover { color: var(--color-primary); }
 
 /* ---- Register section ---- */
 .register-title {
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-sm);
   font-weight: 700;
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-2);
   color: var(--color-primary);
 }
 .login-register-link {
   text-align: center;
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   color: var(--text-muted);
-  margin-top: var(--space-3);
+  margin-top: var(--space-2);
 }
 .link-btn {
   background: none;
@@ -352,40 +368,135 @@
   text-decoration: none;
   transition: opacity var(--transition-fast);
 }
-.link-btn:hover {
-  opacity: 0.7;
-  text-decoration: underline;
+.link-btn:hover { opacity: .7; text-decoration: underline; }
+
+/* ---- Form elements ---- */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-bottom: var(--space-2);
+}
+.form-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: .03em;
+}
+.form-control {
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-family: var(--font-family);
+  font-size: 16px;
+  color: var(--text-primary);
+  background: var(--bg-card);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  min-height: 44px;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.form-control:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(26, 86, 160, .1);
+}
+.form-control::placeholder { color: var(--text-muted); }
+.form-error {
+  font-size: 10px;
+  color: var(--color-danger);
+  margin-top: var(--space-1);
+}
+.form-hint {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+.form-error.hidden, .form-hint.hidden { display: none; }
+
+/* ---- Buttons ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  border: none;
+  border-radius: var(--border-radius);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  min-height: 44px;
+  white-space: nowrap;
+  text-decoration: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.btn:active:not(:disabled) { transform: scale(0.98); }
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--text-on-primary);
+}
+.btn-primary:hover:not(:disabled) {
+  background: var(--color-primary-dark);
+  color: var(--text-on-primary);
+  text-decoration: none;
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-primary);
+}
+.btn-ghost:hover:not(:disabled) {
+  background: var(--color-primary);
+  color: var(--text-on-primary);
+  text-decoration: none;
+}
+.btn-success {
+  background: var(--color-success);
+  color: #fff;
+}
+.btn-success:hover:not(:disabled) { background: #128a3e; }
+.btn-full { width: 100%; }
+.btn-lg {
+  font-size: var(--font-size-sm);
+  padding: var(--space-2) var(--space-3);
+  min-height: 48px;
 }
 
-/* ---- Responsive ---- */
-@media (max-width: 1024px) {
-  .login-brand {
-    flex: 0 0 40%;
-  }
-}
-
-@media (max-width: 768px) {
-  .login-brand {
-    flex: 0 0 35%;
-  }
+/* ---- Desktop: side-by-side layout ---- */
+@media (min-width: 769px) {
   .login-form-panel {
-    padding: var(--space-4) var(--space-3);
+    align-items: center;
+    padding: var(--space-5) var(--space-6);
   }
-  .pin-key {
-    min-height: 48px;
-    font-size: var(--font-size-base);
-  }
+  .login-mobile-logo { display: none !important; }
+  .login-tabs { margin-bottom: var(--space-5); }
+  .pin-display-wrap { margin-bottom: var(--space-4); }
+  .pin-keypad-toggle { display: none; }
+  .pin-keypad-wrap { max-height: none; margin-bottom: var(--space-3); }
+  .pin-keypad { gap: var(--space-3); }
+  .pin-key { min-height: 56px; font-size: var(--font-size-lg); }
+  .pin-key span { display: block; }
+  .form-group { margin-bottom: var(--space-4); }
+  .form-label { font-size: var(--font-size-xs); }
+  #btn-pin-login, #btn-pw-login, #btn-register { margin-top: var(--space-3); }
+  .login-register-link { margin-top: var(--space-4); font-size: var(--font-size-sm); }
+  .register-title { font-size: var(--font-size-lg); margin-bottom: var(--space-4); }
 }
 
+/* ---- Mobile: compact single column ---- */
 @media (max-width: 640px) {
-  .login-brand {
-    display: none;
-  }
-  .login-body {
-    background: var(--bg-page);
-  }
+  .login-brand { display: none; }
+  .login-body { background: var(--bg-page); }
   .login-wrapper {
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     padding: var(--space-2);
     height: 100vh;
@@ -395,25 +506,31 @@
   .login-form-panel {
     padding: var(--space-2) var(--space-2);
     background: transparent;
-    align-items: center;
+    align-items: stretch;
     padding-top: max(var(--space-2), env(safe-area-inset-top));
     height: 100dvh;
     overflow: hidden;
   }
-  .login-form-panel .form-control {
-    min-height: 44px;
-    padding: var(--space-2) var(--space-3);
-  }
   .login-mobile-logo {
     display: flex;
-    margin-bottom: var(--space-3);
+    margin-bottom: var(--space-2);
   }
   .login-form-inner {
     max-width: 100%;
   }
+  .pin-keypad-toggle {
+    display: flex;
+  }
+  .pin-keypad-wrap {
+    max-height: 0;
+    margin-bottom: 0;
+  }
+  .pin-keypad-wrap.open {
+    max-height: 280px;
+    margin-bottom: var(--space-2);
+  }
   .pin-keypad {
     gap: var(--space-2);
-    margin-bottom: var(--space-2);
   }
   .pin-key {
     min-height: 40px;
@@ -422,21 +539,21 @@
   }
   .pin-dots {
     gap: var(--space-2);
-    margin: var(--space-2) 0;
+    margin: var(--space-1) 0;
   }
   .pin-dot {
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
   }
   .pin-display-wrap {
     margin-bottom: var(--space-2);
   }
   .pin-display-wrap .form-label {
-    font-size: var(--font-size-xs);
+    font-size: 10px;
   }
   .pin-hint {
-    font-size: 10px;
-    margin-top: var(--space-1);
+    font-size: 9px;
+    margin-top: 2px;
   }
   .login-tabs {
     margin-bottom: var(--space-2);
@@ -444,8 +561,8 @@
   }
   .login-tab {
     padding: var(--space-2) var(--space-1);
-    font-size: var(--font-size-xs);
-    min-height: 36px;
+    font-size: 10px;
+    min-height: 32px;
   }
   .form-group {
     margin-bottom: var(--space-2);
@@ -465,66 +582,29 @@
   }
   .login-register-link {
     margin-top: var(--space-2);
+    font-size: 10px;
+  }
+  .register-title {
     font-size: var(--font-size-xs);
+    margin-bottom: var(--space-2);
   }
 }
 
-@media (max-width: 480px) {
-  .login-form-panel {
-    padding: var(--space-2);
-  }
-  .pin-dots {
-    gap: var(--space-2);
-  }
+@media (max-width: 380px) {
+  .login-form-panel { padding: var(--space-1); }
   .pin-key {
     min-height: 36px;
     font-size: var(--font-size-sm);
   }
-  .pin-keypad {
-    gap: var(--space-1);
-    margin-bottom: var(--space-2);
-  }
-  .login-tabs {
-    gap: var(--space-1);
-    margin-bottom: var(--space-2);
-  }
-  .login-tab {
-    padding: var(--space-2) var(--space-1);
-    font-size: var(--font-size-xs);
-    min-height: 32px;
-  }
-  .brand-features li {
-    font-size: var(--font-size-xs);
-  }
-  .pin-display-wrap {
-    margin-bottom: var(--space-2);
-  }
+  .pin-keypad { gap: var(--space-1); }
   .pin-dot {
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
   }
-  .pin-display-wrap .form-label {
-    font-size: 10px;
-  }
-  .form-label {
-    font-size: 10px;
-  }
-  .form-group {
-    margin-bottom: var(--space-2);
-  }
-  .form-control {
+  .pin-dots { gap: var(--space-1); }
+  .btn {
     min-height: 44px;
-    padding: var(--space-2) var(--space-3);
-  }
-  #btn-pin-login, #btn-pw-login, #btn-register {
-    margin-top: var(--space-2);
-    min-height: 44px;
-  }
-  .login-register-link {
-    margin-top: var(--space-2);
-  }
-  .login-mobile-logo {
-    margin-bottom: var(--space-2);
+    font-size: var(--font-size-xs);
   }
 }
 
@@ -538,24 +618,41 @@
     padding: var(--space-2);
     height: 100dvh;
     overflow: hidden;
+    align-items: flex-start;
   }
   .login-mobile-logo {
-    margin-bottom: var(--space-2);
+    margin-bottom: var(--space-1);
+  }
+  .pin-keypad-toggle {
+    margin-bottom: var(--space-1);
+  }
+  .pin-keypad-wrap.open {
+    max-height: 200px;
+    margin-bottom: var(--space-1);
   }
   .pin-keypad {
     gap: var(--space-1);
-    margin-bottom: var(--space-1);
   }
   .pin-key {
-    min-height: 36px;
+    min-height: 32px;
   }
   .pin-display-wrap {
-    margin-bottom: var(--space-2);
+    margin-bottom: var(--space-1);
   }
   .login-tabs {
-    margin-bottom: var(--space-2);
+    margin-bottom: var(--space-1);
   }
   .login-form-inner {
     max-width: 360px;
+  }
+  .form-group {
+    margin-bottom: var(--space-1);
+  }
+  #btn-pin-login, #btn-pw-login, #btn-register {
+    margin-top: var(--space-1);
+    min-height: 40px;
+  }
+  .login-register-link {
+    margin-top: var(--space-1);
   }
 }
