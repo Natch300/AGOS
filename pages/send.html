@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>AGOS — Send Money</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -128,34 +128,43 @@
 <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation"></nav>
 <div class="loading-overlay hidden" id="loading-overlay"></div>
 <style>
-.step-bar { display:flex; align-items:center; margin-bottom:var(--space-6); }
-.step { display:flex; align-items:center; gap:6px; font-size:var(--font-size-xs); font-weight:600; color:var(--text-muted); white-space:nowrap; }
-.step span { width:24px;height:24px;border-radius:50%;border:2px solid var(--color-gray-300);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.7rem;background:var(--bg-card); }
-.step.active { color:var(--color-primary); }
-.step.active span { border-color:var(--color-primary);background:var(--color-primary);color:#fff; }
-.step.done span { border-color:var(--color-success);background:var(--color-success);color:#fff; }
-.step-line { flex:1;height:2px;background:var(--color-gray-200);margin:0 var(--space-2); }
-.contact-chips { display:flex;flex-wrap:wrap;gap:var(--space-2);min-height:40px; }
-.contact-chip { display:flex;align-items:center;gap:var(--space-2);padding:var(--space-2) var(--space-3);background:var(--color-gray-100);border:2px solid transparent;border-radius:var(--border-radius-full);cursor:pointer;font-size:var(--font-size-sm);font-weight:600;transition:all var(--transition-fast); }
-.contact-chip:hover,.contact-chip.selected { background:var(--color-primary);color:#fff;border-color:var(--color-primary); }
-.contact-chip-avatar { width:28px;height:28px;border-radius:50%;background:var(--color-accent);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:#fff; }
-.recipient-preview { display:flex;align-items:center;gap:var(--space-4);padding:var(--space-4);background:var(--color-success-bg);border-radius:var(--border-radius);border:2px solid #bbf7d0; }
-.preview-avatar { width:48px;height:48px;border-radius:50%;background:var(--color-primary);display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:700;color:#fff;flex-shrink:0; }
-.preview-name { font-weight:700;font-size:var(--font-size-md); }
-.preview-acct { font-size:var(--font-size-sm);color:var(--text-muted); }
-.amount-presets { display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4); }
-.preset-btn { padding:var(--space-2) var(--space-4);border:2px solid var(--border-color);background:var(--bg-card);border-radius:var(--border-radius);font-family:var(--font-family);font-size:var(--font-size-sm);font-weight:600;cursor:pointer;transition:all var(--transition-fast); }
-.preset-btn:hover { border-color:var(--color-primary);color:var(--color-primary);background:var(--color-info-bg); }
-.confirm-row { display:flex;justify-content:space-between;align-items:center;padding:var(--space-4) 0;border-bottom:1px solid var(--border-color); }
-.confirm-row:last-child { border-bottom:none; }
-.confirm-lbl { color:var(--text-muted);font-size:var(--font-size-sm);font-weight:600; }
-.confirm-val { font-weight:700;font-size:var(--font-size-sm);text-align:right; }
-.confirm-amount { font-family:var(--font-family-mono);font-variant-numeric:tabular-nums;font-size:var(--font-size-2xl);font-weight:700;color:var(--color-danger);text-align:center;padding:var(--space-4) 0; }
-.success-screen { text-align:center;padding:var(--space-8) 0; }
-.success-screen .success-icon { font-size:5rem;margin-bottom:var(--space-4); }
-.success-screen h2 { font-size:var(--font-size-xl);margin-bottom:var(--space-2); }
-.success-screen p { color:var(--text-muted);margin-bottom:var(--space-1); }
-.success-screen .ref { font-size:var(--font-size-xs);background:var(--color-gray-100);padding:var(--space-2) var(--space-4);border-radius:var(--border-radius);font-family:var(--font-family-mono);margin-top:var(--space-4);display:inline-block; }
+  .step-bar { display:flex; align-items:center; margin-bottom:var(--space-6); gap:var(--space-2); }
+  .step { display:flex; align-items:center; gap:6px; font-size:var(--font-size-xs); font-weight:600; color:var(--text-muted); white-space:nowrap; }
+  .step span { width:24px;height:24px;border-radius:50%;border:2px solid var(--color-gray-300);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.7rem;background:var(--bg-card); flex-shrink:0; }
+  .step.active { color:var(--color-primary); }
+  .step.active span { border-color:var(--color-primary);background:var(--color-primary);color:#fff; }
+  .step.done span { border-color:var(--color-success);background:var(--color-success);color:#fff; }
+  .step-line { flex:1;height:2px;background:var(--color-gray-200);min-width:8px; }
+  .contact-chips { display:flex;flex-wrap:wrap;gap:var(--space-2);min-height:40px; }
+  .contact-chip { display:flex;align-items:center;gap:var(--space-2);padding:var(--space-2) var(--space-3);background:var(--color-gray-100);border:2px solid transparent;border-radius:var(--border-radius-full);cursor:pointer;font-size:var(--font-size-sm);font-weight:600;transition:all var(--transition-fast); }
+  .contact-chip:hover,.contact-chip.selected { background:var(--color-primary);color:#fff;border-color:var(--color-primary); }
+  .contact-chip-avatar { width:28px;height:28px;border-radius:50%;background:var(--color-accent);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:#fff; }
+  .recipient-preview { display:flex;align-items:center;gap:var(--space-4);padding:var(--space-4);background:var(--color-success-bg);border-radius:var(--border-radius);border:2px solid #bbf7d0; }
+  .preview-avatar { width:48px;height:48px;border-radius:50%;background:var(--color-primary);display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:700;color:#fff;flex-shrink:0; }
+  .preview-name { font-weight:700;font-size:var(--font-size-md); }
+  .preview-acct { font-size:var(--font-size-sm);color:var(--text-muted); }
+  .amount-presets { display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4); }
+  .preset-btn { padding:var(--space-2) var(--space-4);border:2px solid var(--border-color);background:var(--bg-card);border-radius:var(--border-radius);font-family:var(--font-family);font-size:var(--font-size-sm);font-weight:600;cursor:pointer;transition:all var(--transition-fast); }
+  .preset-btn:hover { border-color:var(--color-primary);color:var(--color-primary);background:var(--color-info-bg); }
+  .confirm-row { display:flex;justify-content:space-between;align-items:center;padding:var(--space-4) 0;border-bottom:1px solid var(--border-color); }
+  .confirm-row:last-child { border-bottom:none; }
+  .confirm-lbl { color:var(--text-muted);font-size:var(--font-size-sm);font-weight:600; }
+  .confirm-val { font-weight:700;font-size:var(--font-size-sm);text-align:right; }
+  .confirm-amount { font-family:var(--font-family-mono);font-variant-numeric:tabular-nums;font-size:var(--font-size-2xl);font-weight:700;color:var(--color-danger);text-align:center;padding:var(--space-4) 0; }
+  .success-screen { text-align:center;padding:var(--space-8) 0; }
+  .success-screen .success-icon { font-size:5rem;margin-bottom:var(--space-4); }
+  .success-screen h2 { font-size:var(--font-size-xl);margin-bottom:var(--space-2); }
+  .success-screen p { color:var(--text-muted);margin-bottom:var(--space-1); }
+  .success-screen .ref { font-size:var(--font-size-xs);background:var(--color-gray-100);padding:var(--space-2) var(--space-4);border-radius:var(--border-radius);font-family:var(--font-family-mono);margin-top:var(--space-4);display:inline-block; }
+
+  @media (max-width: 480px) {
+    .step-bar { flex-wrap: wrap; }
+    .step { font-size: 10px; gap: 3px; }
+    .step span { width: 20px; height: 20px; font-size: 0.6rem; }
+    .step-line { min-width: 4px; }
+    .step-line { display: none; }
+    .step:not(:last-child)::after { content: '›'; margin: 0 4px; color: var(--text-muted); font-size: 12px; }
+  }
 </style>
 <script type="module" src="../js/pages/send.js"></script>
 </body>

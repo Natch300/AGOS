@@ -17,6 +17,8 @@ html {
   -moz-osx-font-smoothing: grayscale;
   /* Better touch scrolling on mobile */
   -webkit-overflow-scrolling: touch;
+  /* Prevent iOS zoom on orientation change */
+  text-size-adjust: 100%;
 }
 
 body {
@@ -26,6 +28,7 @@ body {
   background: var(--bg-page);
   line-height: 1.6;
   min-height: 100vh;
+  min-height: 100dvh;
   -webkit-font-smoothing: antialiased;
   /* Prevent text size adjustment on mobile */
   -webkit-text-size-adjust: 100%;
@@ -33,6 +36,9 @@ body {
   text-size-adjust: 100%;
   /* Disable pull-to-refresh on mobile */
   overscroll-behavior-y: contain;
+  /* Prevent bounce on iOS */
+  position: relative;
+  overflow-x: hidden;
 }
 
 /* ---- Links ---- */
@@ -390,6 +396,7 @@ textarea.form-control {
 .app-shell {
   display: flex;
   min-height: 100vh;
+  min-height: 100dvh;
 }
 
 /* ---- Sidebar ---- */
@@ -645,6 +652,8 @@ textarea.form-control {
   flex: 1;
   padding: var(--space-6) var(--space-8);
   max-width: calc(var(--content-max-width) + var(--space-16));
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 /* ---- Divider ---- */

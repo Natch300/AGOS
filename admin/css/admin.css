@@ -15,6 +15,7 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -23,7 +24,9 @@ body {
   color: var(--text-primary);
   background: var(--bg-page);
   min-height: 100vh;
+  min-height: 100dvh;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 /* Re-import all shared component styles */
@@ -1001,10 +1004,31 @@ table.data-table {
   .stats-grid {
     grid-template-columns: 1fr 1fr;
   }
+
+  .form-control {
+    font-size: 16px; /* Prevent iOS zoom */
+  }
 }
 
 @media (max-width: 480px) {
   .stats-grid {
     grid-template-columns: 1fr;
+  }
+
+  .page-body {
+    padding: var(--space-3);
+  }
+
+  .card {
+    padding: var(--space-4);
+    margin-bottom: var(--space-3);
+  }
+
+  .data-table {
+    font-size: var(--font-size-xs);
+  }
+
+  .btn {
+    min-height: var(--touch-target-min);
   }
 }

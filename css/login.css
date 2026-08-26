@@ -5,6 +5,7 @@
 .login-body {
   background: var(--bg-page);
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: stretch;
 }
@@ -13,6 +14,7 @@
   display: flex;
   width: 100%;
   min-height: 100vh;
+  min-height: 100dvh;
 }
 
 /* ---- Left branding panel ---- */
@@ -99,7 +101,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-8) var(--space-6);
+  padding: var(--space-6) var(--space-6);
   overflow-y: auto;
   background: #ffffff;
 }
@@ -232,12 +234,12 @@
 .pin-keypad {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-4);
-  margin-bottom: var(--space-6);
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
 }
 .pin-key {
   aspect-ratio: 1;
-  min-height: 68px;
+  min-height: 64px;
   border-radius: var(--border-radius);
   border: 1.5px solid var(--border-color);
   background: #ffffff;
@@ -372,10 +374,10 @@
     flex: 0 0 35%;
   }
   .login-form-panel {
-    padding: var(--space-6) var(--space-5);
+    padding: var(--space-5) var(--space-4);
   }
   .pin-key {
-    min-height: 60px;
+    min-height: 56px;
     font-size: var(--font-size-lg);
   }
 }
@@ -390,11 +392,15 @@
   .login-wrapper {
     align-items: center;
     justify-content: center;
-    padding: var(--space-4);
+    padding: var(--space-3);
+    min-height: 100vh;
+    min-height: 100dvh;
   }
   .login-form-panel {
-    padding: var(--space-6) var(--space-4);
+    padding: var(--space-5) var(--space-4);
     background: transparent;
+    align-items: flex-start;
+    padding-top: max(var(--space-5), env(safe-area-inset-top));
   }
   .login-form-panel .form-control {
     min-height: 52px;
@@ -402,46 +408,70 @@
   }
   .login-mobile-logo {
     display: flex;
-    margin-bottom: var(--space-8);
+    margin-bottom: var(--space-6);
   }
   .login-form-inner {
     max-width: 100%;
   }
   .pin-keypad {
-    gap: var(--space-3);
+    gap: var(--space-2);
+    margin-bottom: var(--space-3);
   }
   .pin-key {
-    min-height: 64px;
-    font-size: var(--font-size-base);
+    min-height: 56px;
+    font-size: var(--font-size-lg);
     border-radius: var(--border-radius);
     color: #102a43;
   }
   .pin-dots {
     gap: var(--space-4);
+    margin: var(--space-4) 0 var(--space-2);
   }
   .pin-dot {
     width: 20px;
     height: 20px;
   }
+  .pin-display-wrap {
+    margin-bottom: var(--space-5);
+  }
+  .pin-display-wrap .form-label {
+    font-size: var(--font-size-sm);
+  }
+  .pin-hint {
+    font-size: var(--font-size-xs);
+  }
+  .login-tabs {
+    margin-bottom: var(--space-5);
+  }
+  .login-tab {
+    padding: var(--space-3) var(--space-3);
+    font-size: var(--font-size-sm);
+  }
   /* Better mobile form spacing */
   .form-group {
-    margin-bottom: var(--space-4);
+    margin-bottom: var(--space-3);
   }
   .form-control {
     font-size: 16px; /* Prevents zoom on iOS */
     min-height: var(--touch-target-min);
   }
+  #btn-pin-login, #btn-pw-login, #btn-register {
+    margin-top: var(--space-3);
+  }
+  .login-register-link {
+    margin-top: var(--space-4);
+  }
 }
 
 @media (max-width: 480px) {
   .login-form-panel {
-    padding: var(--space-5) var(--space-4);
+    padding: var(--space-4) var(--space-3);
   }
   .pin-dots {
     gap: var(--space-3);
   }
   .pin-key {
-    min-height: 58px;
+    min-height: 52px;
     font-size: var(--font-size-base);
   }
   .pin-keypad {
@@ -449,7 +479,7 @@
   }
   .login-tabs {
     gap: var(--space-2);
-    margin-bottom: var(--space-6);
+    margin-bottom: var(--space-4);
   }
   .login-tab {
     padding: var(--space-3) var(--space-2);
@@ -457,6 +487,12 @@
   }
   .brand-features li {
     font-size: var(--font-size-xs);
+  }
+  .pin-display-wrap {
+    margin-bottom: var(--space-4);
+  }
+  .pin-keypad {
+    margin-bottom: var(--space-2);
   }
 }
 
@@ -469,12 +505,18 @@
     padding: var(--space-4);
   }
   .login-mobile-logo {
-    margin-bottom: var(--space-4);
+    margin-bottom: var(--space-3);
   }
   .pin-keypad {
     gap: var(--space-2);
   }
   .pin-key {
-    min-height: 52px;
+    min-height: 48px;
+  }
+  .pin-display-wrap {
+    margin-bottom: var(--space-3);
+  }
+  .login-tabs {
+    margin-bottom: var(--space-3);
   }
 }
