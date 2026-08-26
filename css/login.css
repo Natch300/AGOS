@@ -267,12 +267,14 @@
 
 .pin-keypad {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, auto);
   gap: var(--space-2);
+  justify-content: center;
 }
 .pin-key {
-  width: 100%;
-  height: 40px;
+  aspect-ratio: 1;
+  width: 48px;
+  height: 48px;
   border-radius: var(--border-radius-sm);
   border: 1.5px solid var(--border-color);
   background: #ffffff;
@@ -478,6 +480,7 @@
   .pin-keypad-wrap { max-height: none; margin-bottom: var(--space-3); }
   .pin-keypad { gap: var(--space-3); }
   .pin-key {
+    width: 56px;
     height: 56px;
     font-size: var(--font-size-lg);
   }
@@ -523,14 +526,15 @@
     margin-bottom: 0;
   }
   .pin-keypad-wrap.open {
-    max-height: 220px;
+    max-height: 160px;
     margin-bottom: var(--space-2);
   }
   .pin-keypad {
     gap: var(--space-2);
   }
   .pin-key {
-    height: 36px;
+    width: 40px;
+    height: 40px;
     font-size: var(--font-size-sm);
     border-radius: var(--border-radius-sm);
   }
@@ -590,7 +594,8 @@
 @media (max-width: 380px) {
   .login-form-panel { padding: var(--space-1); }
   .pin-key {
-    height: 32px;
+    width: 34px;
+    height: 34px;
     font-size: var(--font-size-sm);
   }
   .pin-keypad { gap: var(--space-1); }
@@ -624,14 +629,15 @@
     margin-bottom: var(--space-1);
   }
   .pin-keypad-wrap.open {
-    max-height: 180px;
+    max-height: 150px;
     margin-bottom: var(--space-1);
   }
   .pin-keypad {
     gap: var(--space-1);
   }
   .pin-key {
-    height: 28px;
+    width: 32px;
+    height: 32px;
   }
   .pin-display-wrap {
     margin-bottom: var(--space-1);
