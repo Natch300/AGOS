@@ -267,19 +267,21 @@
 
 .pin-keypad {
   display: grid;
-  grid-template-columns: repeat(3, auto);
-  gap: var(--space-2);
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
   justify-content: center;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .pin-key {
   aspect-ratio: 1;
-  width: 52px;
-  height: 52px;
-  border-radius: var(--border-radius-sm);
+  min-height: 64px;
+  border-radius: var(--border-radius);
   border: 1.5px solid var(--border-color);
   background: #ffffff;
   font-family: var(--font-family-mono);
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-xl);
   font-weight: 700;
   color: #102a43;
   cursor: pointer;
@@ -289,6 +291,7 @@
   transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
   user-select: none;
   -webkit-tap-highlight-color: transparent;
+  width: 100%;
 }
 .pin-key[data-val] { color: #102a43; background: #ffffff; }
 .pin-key[data-val]::first-line { color: #102a43; }
@@ -478,11 +481,13 @@
   .pin-display-wrap { margin-bottom: var(--space-4); }
   .pin-keypad-toggle { display: none; }
   .pin-keypad-wrap { max-height: none; margin-bottom: var(--space-3); }
-  .pin-keypad { gap: var(--space-3); }
+  .pin-keypad { 
+    gap: var(--space-3);
+    max-width: 360px;
+  }
   .pin-key {
-    width: 56px;
-    height: 56px;
-    font-size: var(--font-size-lg);
+    min-height: 72px;
+    font-size: var(--font-size-2xl);
   }
   .form-group { margin-bottom: var(--space-4); }
   .form-label { font-size: var(--font-size-xs); }
@@ -526,17 +531,19 @@
     margin-bottom: 0;
   }
   .pin-keypad-wrap.open {
-    max-height: 200px;
+    max-height: 320px;
     margin-bottom: var(--space-2);
   }
   .pin-keypad {
-    gap: var(--space-2);
+    gap: var(--space-3);
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .pin-key {
-    width: 44px;
-    height: 44px;
-    font-size: var(--font-size-base);
-    border-radius: var(--border-radius-sm);
+    min-height: 56px;
+    font-size: var(--font-size-xl);
+    border-radius: var(--border-radius);
   }
   .pin-dots {
     gap: var(--space-2);
@@ -594,19 +601,21 @@
 @media (max-width: 380px) {
   .login-form-panel { padding: var(--space-1); }
   .pin-key {
-    width: 38px;
-    height: 38px;
-    font-size: var(--font-size-base);
+    min-height: 48px;
+    font-size: var(--font-size-lg);
   }
-  .pin-keypad { gap: var(--space-1); }
+  .pin-keypad { 
+    gap: var(--space-2);
+    max-width: 240px;
+  }
   .pin-dot {
     width: 8px;
     height: 8px;
   }
   .pin-dots { gap: var(--space-1); }
   .btn {
-    min-height: 40px;
-    font-size: var(--font-size-xs);
+    min-height: 48px;
+    font-size: var(--font-size-sm);
   }
 }
 
@@ -629,15 +638,18 @@
     margin-bottom: var(--space-1);
   }
   .pin-keypad-wrap.open {
-    max-height: 170px;
+    max-height: 200px;
     margin-bottom: var(--space-1);
   }
   .pin-keypad {
-    gap: var(--space-1);
+    gap: var(--space-2);
+    max-width: 260px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .pin-key {
-    width: 36px;
-    height: 36px;
+    min-height: 40px;
+    font-size: var(--font-size-lg);
   }
   .pin-display-wrap {
     margin-bottom: var(--space-1);
